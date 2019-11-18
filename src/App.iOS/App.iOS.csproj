@@ -126,8 +126,13 @@
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <ItemGroup>
     <ProjectReference Include="..\App\App.csproj">
-      <Project>{D24E1C99-637E-4518-87E3-80044CEDE2EA}</Project>
+      <Project>{980883A5-0572-4B40-BE02-844795D72B48}</Project>
       <Name>App</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\fa-brands-400.ttf" />
+    <BundleResource Include="Resources\fa-regular-400.ttf" />
+    <BundleResource Include="Resources\fa-solid-900.ttf" />
   </ItemGroup>
 </Project>

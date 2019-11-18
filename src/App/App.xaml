@@ -6,6 +6,7 @@
              mc:Ignorable="d"
              x:Class="App.App">
     <Application.Resources>
+                <ResourceDictionary>            <OnPlatform x:TypeArguments="x:String"                     x:Key="FontAwesomeBrands">                <On Platform="Android"                     Value="fa-brands-400.ttf#Font Awesome 5 Free" />                <On Platform="iOS"                     Value="Font Awesome 5 Free" />            </OnPlatform>            <OnPlatform x:TypeArguments="x:String"                 x:Key="FontAwesomeSolid">                <On Platform="Android"                     Value="fa-solid-900.ttf#Font Awesome 5 Free" />                <On Platform="iOS"                     Value="Font Awesome 5 Free" />            </OnPlatform>            <OnPlatform x:TypeArguments="x:String"                 x:Key="FontAwesomeRegular">                <On Platform="Android"                     Value="fa-regular-400.ttf#Font Awesome 5 Free" />                <On Platform="iOS"                     Value="Font Awesome 5 Free" />            </OnPlatform>        </ResourceDictionary>
 
     </Application.Resources>
 </Application>

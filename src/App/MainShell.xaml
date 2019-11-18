@@ -1,5 +1,48 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="App.MainShell">
-    <ContentPage.Content>
-    </ContentPage.Content>
-</ContentPage>
+<Shell xmlns="http://xamarin.com/schemas/2014/forms"
+       xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+       xmlns:pages="clr-namespace:App.Views;assembly=App"
+       FlyoutBehavior="Disabled"
+       x:Class="App.MainShell"
+       BackgroundColor="#14B1BB"
+       TitleColor="#000000"
+       Shell.TabBarBackgroundColor="White"
+       Shell.TabBarForegroundColor="#14B1BB"
+       Shell.TabBarUnselectedColor="#495057"
+       Shell.TabBarTitleColor="#14B1BB">
+
+    <!--<ShellItem>
+        <ShellContent>
+            <pages:MainPage/>
+        </ShellContent>
+    </ShellItem>-->
+
+    <TabBar>
+        <Tab Title="Ajustes" >
+            <Tab.Icon>
+                <FontImageSource FontFamily="{StaticResource FontAwesomeSolid}" Glyph="&#xf3fd;"/>
+            </Tab.Icon>
+            <ShellContent>
+                <pages:Settings/>
+            </ShellContent>
+        </Tab>
+
+        <Tab Title="Buscar" >
+            <Tab.Icon>
+                <FontImageSource FontFamily="{StaticResource FontAwesomeRegular}" Glyph="&#xf2bb;"/>
+            </Tab.Icon>
+            <ShellContent>
+                <pages:Search/>
+            </ShellContent>
+        </Tab>
+        <Tab Title="Perfil" >
+            <Tab.Icon>
+                <FontImageSource FontFamily="{StaticResource FontAwesomeRegular}" Glyph="&#xf2bb;"/>
+            </Tab.Icon>
+            <ShellContent>
+                <pages:Profile/>
+            </ShellContent>
+        </Tab>
+    </TabBar>
+
+</Shell>
