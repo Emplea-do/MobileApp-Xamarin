@@ -1,10 +1,9 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="App.Views.Search">
+             
+             x:Class="App.Views.SettingsView">
     <ContentPage.Content>
-          <Label Text="Welcome SEARCH to App Mobile Emplea.do!" 
-           HorizontalOptions="Center"
-           VerticalOptions="CenterAndExpand" />
+                <Label Text="Welcome Settings Emplea.do!"                VerticalOptions="CenterAndExpand"                 HorizontalOptions="CenterAndExpand" />       
     </ContentPage.Content>
 </ContentPage>

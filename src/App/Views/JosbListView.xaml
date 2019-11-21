@@ -1,0 +1,122 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="App.Views.JosbListView"
+             xmlns:Local="clr-namespace:App.ViewModels"
+             Shell.NavBarIsVisible="False"
+             BackgroundColor="#F8F8F8"
+             >
+    <ContentPage.BindingContext>
+        <Local:JobsListViewModel />
+    </ContentPage.BindingContext>
+    <ContentPage.Content>
+        <StackLayout Padding="20,20,20,0">
+            <StackLayout Orientation="Horizontal" BackgroundColor="White"
+                         Padding="15,12">
+                <Label Text="&#xf053;" FontFamily="{StaticResource FontAwesomeSolid}"
+                       FontSize="21"
+                       VerticalOptions="Center"
+                       TextColor="Black"/>
+                <Label Text="Developer"
+                       FontSize="20"
+                       VerticalOptions="Center"
+                       Margin="0"
+                       TextColor="Black"/>
+            </StackLayout>
+            <Label Text="{Binding Jobss.TotalItemCount, StringFormat='{0} Empleos Disponibles'}"
+                   FontSize="26"
+                   TextColor="Black"
+                   FontAttributes="Bold"
+                   HorizontalOptions="StartAndExpand"
+                   Margin="0,10"/>
+            <ListView ItemsSource="{Binding Jobss.Jobs}" 
+                      SeparatorVisibility="None" 
+                      SelectionMode="None"
+                      HasUnevenRows="True">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Frame CornerRadius="4" BackgroundColor="White" Margin="0,0,0,8"
+                                   Padding="10,17"
+                                   HasShadow="True" >
+                                <Grid HorizontalOptions="Start">
+                                   
+                                   <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <Label Grid.Row="0"
+                                       Grid.Column="0"
+                                       Text="{Binding Title}"  
+                                       FontSize="20"
+                                           HorizontalOptions="Start"
+                                           TextColor="Black"
+                                           Padding="0"
+                                           Margin="0"/>
+                                    
+                                    <StackLayout Grid.Row="1"
+                                                Grid.Column="0"
+                                        Orientation="Horizontal"
+                                                 Padding="0"
+                                                 Spacing="0">
+                                        <Frame CornerRadius="2" BackgroundColor="#13BAC3" IsVisible="{Binding IsRemote}"
+                                               Padding="4,2"
+                                               Margin="0,0,5,0"
+                                               HorizontalOptions="Start">
+                                            <Label Text="Remoto" 
+                                                   TextColor="White"
+                                                   FontSize="12"
+                                                   Padding="0"
+                                               Margin="0"/>
+                                        </Frame>
+
+                                        <Label Text="{Binding CompanyName}" 
+                                               FontSize="16"
+                                               TextColor="Black"
+                                               Padding="0"
+                                               Margin="0"/>
+                                    </StackLayout>
+
+                                    
+                                        <Grid Grid.Row="2"
+                                                 Grid.Column="0"
+                                                 Grid.ColumnSpan="2">
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="Auto"/>
+                                            </Grid.RowDefinitions>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="Auto" />
+                                                <ColumnDefinition Width="*" />
+                                            </Grid.ColumnDefinitions>
+
+                                        <Label Grid.Row="0" Grid.Column="0" 
+                                                   Text="&#xf3c5;"
+                                                   FontFamily="{StaticResource FontAwesomeSolid}"
+                                                   Margin="0"
+                                                   Padding="0" VerticalOptions="Center"/>
+                                        <Label Grid.Row="0" Grid.Column="1"
+                                                   Text="{Binding Location}"
+                                                   Margin="0"
+                                                   Padding="0" VerticalOptions="Center"/>
+                                    </Grid>
+                                        
+                                   
+
+                                </Grid>
+                            </Frame>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

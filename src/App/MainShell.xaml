@@ -6,10 +6,11 @@
        x:Class="App.MainShell"
        BackgroundColor="#14B1BB"
        TitleColor="#000000"
-       Shell.TabBarBackgroundColor="White"
-       Shell.TabBarForegroundColor="#14B1BB"
-       Shell.TabBarUnselectedColor="#495057"
-       Shell.TabBarTitleColor="#14B1BB">
+       Shell.TabBarBackgroundColor="#F8F8F8"
+       Shell.TabBarForegroundColor="#13BAC3"
+       Shell.TabBarUnselectedColor="#94A1B2"
+       Shell.TabBarTitleColor="#14B1BB"
+       >
 
     <!--<ShellItem>
         <ShellContent>
@@ -23,7 +24,16 @@
                 <FontImageSource FontFamily="{StaticResource FontAwesomeSolid}" Glyph="&#xf013;"/>
             </Tab.Icon>
             <ShellContent>
-                <pages:Settings/>
+                <pages:ProfileView/>
+            </ShellContent>
+        </Tab>
+
+        <Tab Title="Lista" >
+            <Tab.Icon>
+                <FontImageSource FontFamily="{StaticResource FontAwesomeRegular}" Glyph="&#xf022;"/>
+            </Tab.Icon>
+            <ShellContent>
+                <pages:JosbListView/>
             </ShellContent>
         </Tab>
 
@@ -32,7 +42,7 @@
                 <FontImageSource FontFamily="{StaticResource FontAwesomeSolid}" Glyph="&#xf002;"/>
             </Tab.Icon>
             <ShellContent>
-                <pages:Search/>
+                <pages:SearchView/>
             </ShellContent>
         </Tab>
         <Tab Title="Perfil" >
@@ -40,7 +50,7 @@
                 <FontImageSource FontFamily="{StaticResource FontAwesomeRegular}" Glyph="&#xf007;"/>
             </Tab.Icon>
             <ShellContent>
-                <pages:Profile/>
+                <pages:ProfileView/>
             </ShellContent>
         </Tab>
     </TabBar>
