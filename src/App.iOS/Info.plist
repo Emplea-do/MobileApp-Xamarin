@@ -33,13 +33,11 @@
 	<string>Assets.xcassets/AppIcon.appiconset</string>
 	<key>MinimumOSVersion</key>
 	<string>12.2</string>
-
 	<key>UIAppFonts</key>
-    <array>
-      <string>Font5Brands.otf</string>
-      <string>Font5Regular.otf</string>
-      <string>Font5Solid.otf</string>
-    </array>
+	<array>
+		<string>Font5Brands.otf</string>
+		<string>Font5Regular.otf</string>
+		<string>Font5Solid.otf</string>
+	</array>
 </dict>
-	
 </plist>
