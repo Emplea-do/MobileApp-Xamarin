@@ -26,7 +26,7 @@ namespace App.ViewModels
                 .AppendPathSegment("jobs")
                 .SetQueryParams(new { pagesize = 10, page = 1 })
                 .WithHeader("Ocp-Apim-Subscription-Key", "155d4cd48bb34ba0b8375fd50b779b85")
-                .GetJsonAsync<ListaEmpleos>();
+                .GetJsonAsync<JobListModel>();
 
             Jobss = new ObservableCollection<Jobs>(Cards.Jobs);
         }

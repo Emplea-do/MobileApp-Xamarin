@@ -57,7 +57,7 @@ namespace App.Models
         public string HowToApply { get; set; }
     }
 
-    public class ListaEmpleos
+    public class JobListModel
     {
         public List<Jobs> Jobs { get; set; }
         public int PageSize { get; set; }

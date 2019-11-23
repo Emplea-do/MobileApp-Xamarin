@@ -13,21 +13,21 @@ namespace App.ViewModels
 {
     class JobsListViewModel : INotifyPropertyChanged
     {
-        public ListaEmpleos Jobss { get; set; }
+        public JobListModel Jobss { get; set; }
         public Command LlenarListaCommand { get; set; }
         public JobsListViewModel()
         {
 
-            new Action(async () => await cargarDatos())();
+            new Action(async () => await LoadData())();
         }
 
-        public async Task cargarDatos()
+        public async Task LoadData()
         {
             var Cards = await "https://emplea-apm.azure-api.net/v1/api"
                 .AppendPathSegment("jobs")
                 .SetQueryParams(new { pagesize = 10, page = 1 })
                 .WithHeader("Ocp-Apim-Subscription-Key", "155d4cd48bb34ba0b8375fd50b779b85")
-                .GetJsonAsync<ListaEmpleos>();
+                .GetJsonAsync<JobListModel>();
             //ObservableCollection
             //Jobss = new ListaEmpleos();
             Jobss = Cards;

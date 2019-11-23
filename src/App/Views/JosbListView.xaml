@@ -42,15 +42,15 @@
                             <Frame CornerRadius="4" BackgroundColor="White" Margin="0,0,0,8"
                                    Padding="10,17"
                                    HasShadow="True" >
-                                <Grid HorizontalOptions="Start">
-                                   
-                                   <Grid.RowDefinitions>
+                                <Grid HorizontalOptions="FillAndExpand" BackgroundColor="White">
+
+                                    <Grid.RowDefinitions>
                                         <RowDefinition Height="Auto"/>
                                         <RowDefinition Height="Auto"/>
                                         <RowDefinition Height="Auto"/>
                                     </Grid.RowDefinitions>
                                     <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="*"/>
                                         <ColumnDefinition Width="Auto"/>
                                     </Grid.ColumnDefinitions>
 
@@ -61,8 +61,25 @@
                                            HorizontalOptions="Start"
                                            TextColor="Black"
                                            Padding="0"
-                                           Margin="0"/>
-                                    
+                                           Margin="0" LineBreakMode="NoWrap"/>
+
+                                    <Frame Grid.Row="0" Grid.Column="1" Grid.RowSpan="2"
+                                           BorderColor="White"
+                                           CornerRadius="50"
+                                           HeightRequest="20"
+                                           WidthRequest="20"
+                                           IsClippedToBounds="True"
+                                           HorizontalOptions="Center"
+                                           VerticalOptions="Center"
+                                           HasShadow="False">
+                                        <Image Source="{Binding CompanyLogoUrl}"
+                                                 Aspect="AspectFill"
+                                                 Margin="-20"
+                                                 HeightRequest="60"
+                                                 WidthRequest="60" />
+
+                                    </Frame>
+
                                     <StackLayout Grid.Row="1"
                                                 Grid.Column="0"
                                         Orientation="Horizontal"
@@ -86,17 +103,18 @@
                                                Margin="0"/>
                                     </StackLayout>
 
-                                    
-                                        <Grid Grid.Row="2"
+
+                                    <Grid Grid.Row="2"
                                                  Grid.Column="0"
-                                                 Grid.ColumnSpan="2">
-                                            <Grid.RowDefinitions>
-                                                <RowDefinition Height="Auto"/>
-                                            </Grid.RowDefinitions>
-                                            <Grid.ColumnDefinitions>
-                                                <ColumnDefinition Width="Auto" />
-                                                <ColumnDefinition Width="*" />
-                                            </Grid.ColumnDefinitions>
+                                                 Grid.ColumnSpan="2" HorizontalOptions="FillAndExpand" RowSpacing="0" Padding="0">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto"/>
+                                        </Grid.RowDefinitions>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto" />
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="*" />
+                                        </Grid.ColumnDefinitions>
 
                                         <Label Grid.Row="0" Grid.Column="0" 
                                                    Text="&#xf3c5;"
@@ -106,10 +124,19 @@
                                         <Label Grid.Row="0" Grid.Column="1"
                                                    Text="{Binding Location}"
                                                    Margin="0"
-                                                   Padding="0" VerticalOptions="Center"/>
-                                    </Grid>
+                                                   Padding="0" VerticalOptions="Center" LineBreakMode="NoWrap"/>
+
+                                        <Frame Grid.Row="0" Grid.Column="2" CornerRadius="2" BackgroundColor="#9C27AF"
+                                               Padding="4,2"
+                                               HorizontalOptions="End"
+                                               Margin="0"
+                                               >
+                                            <Label Text="Desarrollador Web" HorizontalOptions="End" Margin="0" TextColor="White"/>
+                                        </Frame>
                                         
-                                   
+                                    </Grid>
+
+
 
                                 </Grid>
                             </Frame>
