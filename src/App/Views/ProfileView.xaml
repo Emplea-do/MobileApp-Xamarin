@@ -4,40 +4,90 @@
              x:Class="App.Views.ProfileView">
              xmlns:Local="clr-namespace:App.ViewModels">
     <ContentPage.Content>
-<StackLayout Orientation="Vertical">
-    <Label Text="Hola, ¿Qué tipo de trabajo estamos buscando?" Padding="0" />
-    <Entry Placeholder="Keywords" Margin="0,15,0,0" ClearButtonVisibility="WhileEditing" /> <Image Source="" />
-    <Label Text="Buscar por Categoría" Padding="0,13,0,0" />
-    <ScrollView Padding="0,5,0,0" Orientation="Horizontal">
+<StackLayout Orientation="Vertical" Margin="0,20,0,0">
+    <Label Text="Hola, ¿Qué tipo de trabajo estamos buscando?" Padding="0" FontSize="Large" FontAttributes="Bold" Margin="0,20,0,0" />
+           
+            <Entry Placeholder="Keywords" Margin="0,15,0,0"  InputTransparent="True" Keyboard="Text" />
+            <Label Text="Buscar por Categoría" Padding="0,13,0,0" />
+    <ScrollView Padding="0,5,0,0" Orientation="Horizontal" HorizontalScrollBarVisibility="Never">
         <StackLayout HorizontalOptions="Start" Orientation="Horizontal">
-            <CarouselView ItemsSource="{Binding CardsJob}">
-            <CarouselView.ItemTemplate>
-                <DataTemplate>
-                     <StackLayout>
-                <Frame HasShadow="True"
+                    <Frame HasShadow="False"
                        BorderColor="DarkGray"
                        CornerRadius="5"
-                       Margin="20"
-                       HeightRequest="300"
+                       HeightRequest="70"
+                       WidthRequest="70"
                        HorizontalOptions="Center"
-                       VerticalOptions="CenterAndExpand">
-                    <StackLayout>
-                      
-                        <Image Source="{Binding ImageJobCard}"
+                       VerticalOptions="Center">
+                        <StackLayout>
+                            <Image Source="disenoGrafico.png"
                                Aspect="AspectFill"
-                               HeightRequest="150"
-                               WidthRequest="150"
+                               HeightRequest="50"
+                               WidthRequest="50"
+                               HorizontalOptions="Center"/>
+                            <Label Text="Diseño Gráfico"
+                                   FontSize="Micro"
                                HorizontalOptions="Center" />
-                        <Label Text="{Binding NameJobCard}"
+                          
+                        </StackLayout>
+                    </Frame>
+                    <Frame HasShadow="False"
+                       BorderColor="DarkGray"
+                       CornerRadius="5"
+                       HeightRequest="70"
+                       WidthRequest="70"
+                       HorizontalOptions="Center"
+                       VerticalOptions="Center">
+                        <StackLayout>
+                            <Image Source="web.png"
+                               Aspect="AspectFill"
+                               HeightRequest="50"
+                               WidthRequest="50"
+                               HorizontalOptions="Center"/>
+                            <Label Text="Desarrollo Web"
+                                   FontSize="Micro"
                                HorizontalOptions="Center" />
-                       
-                    </StackLayout>
-                </Frame>
-            </StackLayout>
-                </DataTemplate>
-            </CarouselView.ItemTemplate>
-            </CarouselView>
-        </StackLayout>
+
+                        </StackLayout>
+                    </Frame>
+                    <Frame HasShadow="False"
+                       BorderColor="DarkGray"
+                       CornerRadius="5"
+                       HeightRequest="70"
+                       WidthRequest="70"
+                       HorizontalOptions="Center"
+                       VerticalOptions="Center">
+                        <StackLayout>
+                            <Image Source="movil.png"
+                               Aspect="AspectFill"
+                               HeightRequest="50"
+                               WidthRequest="50"
+                               HorizontalOptions="Center"/>
+                            <Label Text="Desarrollo Movil"
+                                   FontSize="Micro"
+                               HorizontalOptions="Center" />
+
+                        </StackLayout>
+                    </Frame>
+                    <Frame HasShadow="False"
+                       BorderColor="DarkGray"
+                       CornerRadius="5"
+                       HeightRequest="70"
+                       WidthRequest="70"
+                       HorizontalOptions="Center"
+                       VerticalOptions="Center">
+                        <StackLayout>
+                            <Image Source="software.png"
+                               Aspect="AspectFill"
+                               HeightRequest="50"
+                               WidthRequest="50"
+                               HorizontalOptions="Center"/>
+                            <Label Text="Desarrollo Software"
+                                   FontSize="Micro"
+                               HorizontalOptions="Center" />
+
+                        </StackLayout>
+                    </Frame>
+                </StackLayout>
     </ScrollView>
 <Switch IsToggled="False" />
 </StackLayout>
