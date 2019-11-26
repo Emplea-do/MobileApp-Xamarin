@@ -7,6 +7,9 @@ using Android.Widget;
 using Android.OS;
 using App.Services;
 
+using Xamarin.Forms;
+
+
 namespace App.Droid
 {
     [Activity(Theme = "@style/MainTheme", ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
@@ -19,7 +22,7 @@ namespace App.Droid
 
             base.OnCreate(savedInstanceState);
 
-            
+            Forms.SetFlags("CollectionView_Experimental");
 
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);

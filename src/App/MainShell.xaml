@@ -31,7 +31,7 @@
                 <FontImageSource FontFamily="{StaticResource FontAwesomeSolid}" Glyph="&#xf013;"/>
             </Tab.Icon>
             <ShellContent>
-                <pages:ProfileView/>
+                <pages:SettingsView/>
             </ShellContent>
         </Tab>
        

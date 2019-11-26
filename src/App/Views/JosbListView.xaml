@@ -136,15 +136,12 @@
                                         </Frame>
                                         
                                     </Grid>
-
-
-
                                 </Grid>
                             </Frame>
                         </ViewCell>
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
-        </StackLayout>
+         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

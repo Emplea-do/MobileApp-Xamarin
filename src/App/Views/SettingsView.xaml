@@ -4,6 +4,9 @@
              
              x:Class="App.Views.SettingsView">
     <ContentPage.Content>
-                <Label Text="Welcome Settings Emplea.do!"                VerticalOptions="CenterAndExpand"                 HorizontalOptions="CenterAndExpand" />       
+                <Label Text="Welcome Settings Emplea.do!"
+                VerticalOptions="CenterAndExpand" 
+                HorizontalOptions="CenterAndExpand" />
+       
     </ContentPage.Content>
 </ContentPage>
