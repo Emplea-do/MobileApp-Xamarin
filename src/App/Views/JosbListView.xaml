@@ -7,42 +7,42 @@
              x:Class="App.Views.JosbListView"
              xmlns:Local="clr-namespace:App.ViewModels"
              Shell.NavBarIsVisible="False"
-             BackgroundColor="#F8F8F8"
+             BackgroundColor="{StaticResource BackGroundColor}"
              >
     <ContentPage.BindingContext>
         <Local:JobsListViewModel />
     </ContentPage.BindingContext>
     <ContentPage.Content>
         <StackLayout Padding="20,20,20,0">
-            <StackLayout Orientation="Horizontal" BackgroundColor="White"
+            <StackLayout Orientation="Horizontal" BackgroundColor="{StaticResource CardBackGroundColor}"
                          Padding="15,12">
                 <Label Text="&#xf053;" FontFamily="{StaticResource FontAwesomeSolid}"
                        FontSize="21"
                        VerticalOptions="Center"
-                       TextColor="Black"/>
+                       TextColor="{StaticResource TextLabelColor}"/>
                 <Label Text="Developer"
                        FontSize="20"
                        VerticalOptions="Center"
                        Margin="0"
-                       TextColor="Black"/>
+                       TextColor="{StaticResource TextLabelColor}"/>
             </StackLayout>
-            <Label Text="{Binding Jobss.TotalItemCount, StringFormat='{0} Empleos Disponibles'}"
+            <Label Text="{Binding JobsList.TotalItemCount, StringFormat='{0} Empleos Disponibles'}"
                    FontSize="26"
-                   TextColor="Black"
+                   TextColor="{StaticResource TextLabelColor}"
                    FontAttributes="Bold"
                    HorizontalOptions="StartAndExpand"
                    Margin="0,10"/>
-            <ListView ItemsSource="{Binding Jobss.Jobs}" 
+            <ListView ItemsSource="{Binding JobsList.Jobs}" 
                       SeparatorVisibility="None" 
                       SelectionMode="None"
                       HasUnevenRows="True">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
-                            <Frame CornerRadius="4" BackgroundColor="White" Margin="0,0,0,8"
+                            <Frame CornerRadius="4" BackgroundColor="{StaticResource CardBackGroundColor}" Margin="0,0,0,8"
                                    Padding="10,17"
                                    HasShadow="True" >
-                                <Grid HorizontalOptions="FillAndExpand" BackgroundColor="White">
+                                <Grid HorizontalOptions="FillAndExpand" BackgroundColor="{StaticResource CardBackGroundColor}">
 
                                     <Grid.RowDefinitions>
                                         <RowDefinition Height="Auto"/>
@@ -59,7 +59,7 @@
                                        Text="{Binding Title}"  
                                        FontSize="20"
                                            HorizontalOptions="Start"
-                                           TextColor="Black"
+                                           TextColor="{StaticResource TextLabelColor}"
                                            Padding="0"
                                            Margin="0" LineBreakMode="NoWrap"/>
 
@@ -82,10 +82,10 @@
 
                                     <StackLayout Grid.Row="1"
                                                 Grid.Column="0"
-                                        Orientation="Horizontal"
+                                                Orientation="Horizontal"
                                                  Padding="0"
                                                  Spacing="0">
-                                        <Frame CornerRadius="2" BackgroundColor="#13BAC3" IsVisible="{Binding IsRemote}"
+                                        <Frame CornerRadius="2" BackgroundColor="{StaticResource BGRemoteLabel}" IsVisible="{Binding IsRemote}"
                                                Padding="4,2"
                                                Margin="0,0,5,0"
                                                HorizontalOptions="Start">
@@ -98,7 +98,7 @@
 
                                         <Label Text="{Binding CompanyName}" 
                                                FontSize="16"
-                                               TextColor="Black"
+                                               TextColor="{StaticResource TextLabelColor}"
                                                Padding="0"
                                                Margin="0"/>
                                     </StackLayout>
@@ -120,13 +120,14 @@
                                                    Text="&#xf3c5;"
                                                    FontFamily="{StaticResource FontAwesomeSolid}"
                                                    Margin="0"
-                                                   Padding="0" VerticalOptions="Center"/>
+                                                   Padding="0" VerticalOptions="Center"
+                                                    TextColor="{StaticResource InactiveColor}"/>
                                         <Label Grid.Row="0" Grid.Column="1"
                                                    Text="{Binding Location}"
                                                    Margin="0"
-                                                   Padding="0" VerticalOptions="Center" LineBreakMode="NoWrap"/>
+                                                   Padding="0" VerticalOptions="Center" LineBreakMode="NoWrap" TextColor="{StaticResource LocationLabelColor}"/>
 
-                                        <Frame Grid.Row="0" Grid.Column="2" CornerRadius="2" BackgroundColor="#9C27AF"
+                                        <Frame Grid.Row="0" Grid.Column="2" CornerRadius="2" BackgroundColor="{StaticResource TWebDeveloper}"
                                                Padding="4,2"
                                                HorizontalOptions="End"
                                                Margin="0"

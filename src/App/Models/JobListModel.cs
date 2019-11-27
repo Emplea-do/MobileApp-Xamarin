@@ -14,45 +14,9 @@ namespace App.Models
         public string Location { get; set; }
         public DateTime PublishedDate { get; set; }
         public bool IsRemote { get; set; }
-
-        public string Remoto
-        {
-            get
-            {
-                if (IsRemote == true)
-                {
-
-                    return "Remoto";
-                }
-                else
-                {
-                    return "Local";
-                }
-            }
-        }
         public int ViewCount { get; set; }
         public int Likes { get; set; }
         public string CompanyLogoUrl { get; set; }
-        public string CompanyLogoValidation
-        {
-            get
-            {
-
-                if (CompanyLogoUrl == null)
-                {
-                    return "nonecompanyprofile.png";
-                }
-                else if (CompanyLogoUrl == "https://imgur.com/TUjfgLZ")
-                {
-                    return CompanyLogoUrl + ".png";
-                }
-                else
-                {
-                    return CompanyLogoUrl;
-                }
-
-            }
-        }
         public string Description { get; set; }
         public string HowToApply { get; set; }
     }

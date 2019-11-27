@@ -4,12 +4,10 @@
        xmlns:pages="clr-namespace:App.Views;assembly=App"
        FlyoutBehavior="Disabled"
        x:Class="App.MainShell"
-       BackgroundColor="#14B1BB"
-       TitleColor="#000000"
-       Shell.TabBarBackgroundColor="#F8F8F8"
-       Shell.TabBarForegroundColor="#13BAC3"
-       Shell.TabBarUnselectedColor="#94A1B2"
-       Shell.TabBarTitleColor="#14B1BB"
+       Shell.TabBarBackgroundColor="{StaticResource BackGroundColor}"
+       Shell.TabBarForegroundColor="{StaticResource ActiveColor}"
+       Shell.TabBarUnselectedColor="{StaticResource InactiveColor}"
+       Shell.TabBarTitleColor="{StaticResource ActiveColor}"
        >
 
     <!--<ShellItem>

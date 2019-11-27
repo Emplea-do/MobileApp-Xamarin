@@ -1,4 +1,5 @@
 ﻿using App.Models;
+using App.Services;
 using Flurl;
 using Flurl.Http;
 using System;
@@ -13,8 +14,8 @@ namespace App.ViewModels
 {
     class JobsListViewModel : INotifyPropertyChanged
     {
-        public JobListModel Jobss { get; set; }
-        public Command LlenarListaCommand { get; set; }
+        //public AppConstant ServiceConstant = new AppConstant();
+        public JobListModel JobsList { get; set; }
         public JobsListViewModel()
         {
 
@@ -23,14 +24,14 @@ namespace App.ViewModels
 
         public async Task LoadData()
         {
-            var Cards = await "https://emplea-apm.azure-api.net/v1/api"
-                .AppendPathSegment("jobs")
-                .SetQueryParams(new { pagesize = 10, page = 1 })
-                .WithHeader("Ocp-Apim-Subscription-Key", "155d4cd48bb34ba0b8375fd50b779b85")
+            
+            var Cards = await AppConstant.ApiUrl
+                .AppendPathSegment(AppConstant.ApiEndPoint)
+                .SetQueryParams(new { pagesize = AppConstant.PageSize, page = 1 })
+                .WithHeader("Ocp-Apim-Subscription-Key", AppConstant.AppSecrets)
                 .GetJsonAsync<JobListModel>();
-            //ObservableCollection
-            //Jobss = new ListaEmpleos();
-            Jobss = Cards;
+            JobsList = Cards;
+
         }
         public event PropertyChangedEventHandler PropertyChanged;
     }

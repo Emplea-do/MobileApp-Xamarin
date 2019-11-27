@@ -6,6 +6,7 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using Android.OS;
+using App.Services;
 
 namespace App.Droid
 {
@@ -22,7 +23,7 @@ namespace App.Droid
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
             LoadApplication(new App());
-            Window.SetStatusBarColor(Android.Graphics.Color.ParseColor("#F8F8F8"));
+            Window.SetStatusBarColor(Android.Graphics.Color.ParseColor(AppConstant.Background.ToHex()));
             
         }
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)
