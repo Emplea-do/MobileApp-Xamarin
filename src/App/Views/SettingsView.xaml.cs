@@ -7,9 +7,9 @@ using Xamarin.Forms.Xaml;
 namespace App.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class Settings : ContentPage
+    public partial class SettingsView : ContentPage
     {
-        public Settings()
+        public SettingsView()
         {
             InitializeComponent();
         }

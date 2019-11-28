@@ -4,7 +4,7 @@
   <style name="MainTheme" parent="MainTheme.Base">
   </style>
   <!-- Base theme applied no matter what API -->
-  <style name="MainTheme.Base" parent="Theme.AppCompat.Light.DarkActionBar">
+  <style name="MainTheme.Base" parent="Theme.AppCompat.Light.NoActionBar">
     <!--If you are using revision 22.1 please use just windowNoTitle. Without android:-->
     <item name="windowNoTitle">true</item>
     <!--We will be using the toolbar so no need to show ActionBar-->
@@ -14,6 +14,7 @@
     <item name="colorPrimary">#2196F3</item>
     <!-- colorPrimaryDark is used for the status bar -->
     <item name="colorPrimaryDark">#1976D2</item>
+    <item name="android:windowLightStatusBar">true</item>
     <!-- colorAccent is used as the default value for colorControlActivated
          which is used to tint widgets -->
     <item name="colorAccent">#FF4081</item>
