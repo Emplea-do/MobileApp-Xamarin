@@ -1,50 +1,50 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:ios="clr-namespace:UIKit;assembly=Xamarin.iOS;targetPlatform=iOS"
+		     xmlns:androidWidget="clr-namespace:Android.Widget;assembly=Mono.Android;targetPlatform=Android"
              x:Class="App.Views.SearchView"
-             xmlns:Local="clr-namespace:App.ViewModels"
-             >
-    <ContentPage.BindingContext>
-        <Local:SearchViewModel />
-    </ContentPage.BindingContext>
-    <ContentPage.Content>
-    <StackLayout Orientation="Vertical" Margin="0,10,0,0">
-    <Label Text="Hola, ¿Qué tipo de trabajo estamos buscando?" Padding="0"  TextColor="Black"  FontSize="Large" FontAttributes="Bold" Margin="0,20,0,0" />
-        
-     <Entry Placeholder=" Keywords"> </Entry>
-     <Label Text="Buscar por Categoría" Padding="0,10,0,0"  FontSize="Large" TextColor="Black" />
-     <CarouselView ItemsSource="{Binding JobCards}" NumberOfSideItems="1" HorizontalOptions="StartAndExpand">
-                <CarouselView.ItemTemplate>
-                    <DataTemplate>
-                        <StackLayout>
-                            <Frame 
-                                   HeightRequest="120"
-                                   WidthRequest="100"
-                                   HorizontalOptions="Center"
-                                   VerticalOptions="Center" Padding="5,20,5,0" HasShadow="False">       
-                                <StackLayout>
-                                    <Image Source="{Binding Image}"></Image>
-                                    <Label Text="{Binding NameCard}" FontSize="Small" HorizontalTextAlignment="Center"></Label>
-                                </StackLayout>
-                            </Frame>
-                        </StackLayout>
-                    </DataTemplate>
-                </CarouselView.ItemTemplate>
-            </CarouselView>
-                
-     <StackLayout Orientation="Horizontal" Spacing="0" Padding="0,10,0,20">
-                <Label Text="Buscar solo empleos remotos" TextColor="Black"  FontSize="Large" VerticalOptions="Center" HorizontalOptions="StartAndExpand" />
-                <Switch   OnColor="#13bac3"  ThumbColor="White"  HorizontalOptions="End" VerticalOptions="Center" />
-            </StackLayout>
+             Title="Search">
+<ContentPage.Content>
+   
 
-     <Button Text="Buscar" FontSize="Medium" FontAttributes="Bold"
-                    VerticalOptions="CenterAndExpand"
-                    HorizontalOptions="CenterAndExpand"
-                    TextColor="White"
-                    BackgroundColor="#13bac3" HeightRequest="60" Padding="5,0" WidthRequest="400" />
+    <StackLayout Orientation="Vertical" Margin="15,30,15,40">
+        <Label Text="Hola, ¿Qué tipo de trabajo estamos buscando?" TextColor="{StaticResource TextLabelColor}"
+               FontSize="Large" FontAttributes="Bold" Margin="0,50,0,0" />
+        
+         <Entry Placeholder=" Keywords" Margin="0,20,0,0"> </Entry>
+         <Label Text="Buscar por Categoría" Margin="0,10,0,0"  FontSize="Default" TextColor="{StaticResource TextLabelColor}"
+                FontAttributes="Bold" />
+         <CarouselView ItemsSource="{Binding JobCards}" NumberOfSideItems="1"
+                       HorizontalOptions="StartAndExpand" HorizontalScrollBarVisibility="Never">
+                    <CarouselView.ItemTemplate>
+                        <DataTemplate>
+                            <StackLayout>
+                                <Frame 
+                                       HorizontalOptions="CenterAndExpand"
+                                       HasShadow="False">       
+                                    <StackLayout>
+                                        <Image Source="{Binding Image}"></Image>
+                                        <Label Text="{Binding NameCard}" FontSize="Micro" HorizontalTextAlignment="Center"></Label>
+                                    </StackLayout>
+                                </Frame>
+                            </StackLayout>  
+                        </DataTemplate>
+                    </CarouselView.ItemTemplate>
+          </CarouselView>
+                
+         <StackLayout Orientation="Horizontal" Spacing="0" Margin="0,0,0,20" >
+                    <Label Text="Buscar solo empleos remotos" TextColor="{StaticResource TextLabelColor}"
+                           FontSize="Large" VerticalOptions="Center" HorizontalOptions="StartAndExpand" />
+                    <Switch   OnColor="#13bac3"  ThumbColor="{StaticResource ThumbColor}"
+                              HorizontalOptions="End" VerticalOptions="Center" />
+         </StackLayout>
+
+         <Button Text="Buscar" FontSize="Large" FontAttributes="Bold"
+                        VerticalOptions="CenterAndExpand"
+                        HorizontalOptions="CenterAndExpand"
+                        TextColor="{StaticResource TextColoButtonSearch}"
+                        BackgroundColor="{StaticResource BackgroundColorButtonSearch}" HeightRequest="60"  WidthRequest="400" />
     </StackLayout>
 </ContentPage.Content>
 </ContentPage>
-
