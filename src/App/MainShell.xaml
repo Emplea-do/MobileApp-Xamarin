@@ -2,12 +2,13 @@
 <Shell xmlns="http://xamarin.com/schemas/2014/forms"
        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
        xmlns:pages="clr-namespace:App.Views;assembly=App"
-       FlyoutBehavior="Disabled"
+       FlyoutBehavior="Locked"
        x:Class="App.MainShell"
        Shell.TabBarBackgroundColor="{StaticResource BackGroundColor}"
        Shell.TabBarForegroundColor="{StaticResource ActiveColor}"
        Shell.TabBarUnselectedColor="{StaticResource InactiveColor}"
        Shell.TabBarTitleColor="{StaticResource ActiveColor}"
+       Shell.BackgroundColor="{StaticResource ActiveColor}"
        >
 
     <!--<ShellItem>
@@ -44,14 +45,14 @@
                 <pages:SearchView/>
             </ShellContent>
         </Tab>
-        <Tab Title="Perfil" >
+        <!--<Tab Title="Perfil" >
             <Tab.Icon>
                 <FontImageSource FontFamily="{StaticResource FontAwesomeRegular}" Glyph="&#xf007;"/>
             </Tab.Icon>
             <ShellContent>
                 <pages:ProfileView/>
             </ShellContent>
-        </Tab>
+        </Tab>-->
     </TabBar>
 
 </Shell>

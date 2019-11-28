@@ -4,14 +4,17 @@
       "idiom": "universal"
     },
     {
+      "filename": "Icon60-1.png",
       "scale": "1x",
       "idiom": "universal"
     },
     {
+      "filename": "Icon120.png",
       "scale": "2x",
       "idiom": "universal"
     },
     {
+      "filename": "Icon180.png",
       "scale": "3x",
       "idiom": "universal"
     },
@@ -19,7 +22,7 @@
       "idiom": "iphone"
     },
     {
-      "filename": "Icon60-1.png",
+      "filename": "Icon60.png",
       "scale": "1x",
       "idiom": "iphone"
     },
@@ -34,7 +37,7 @@
       "idiom": "iphone"
     },
     {
-      "filename": "Icon180.png",
+      "filename": "Icon180-1.png",
       "scale": "3x",
       "idiom": "iphone"
     },
@@ -525,6 +528,7 @@
   ],
   "info": {
     "version": 1,
-    "author": "xcode"
+    "author": "xcode",
+    "template-rendering-intent": "original"
   }
 }
