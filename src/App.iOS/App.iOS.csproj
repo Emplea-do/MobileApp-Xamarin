@@ -121,10 +121,10 @@
     <BundleResource Include="Resources\Default.png" />
   </ItemGroup>
   <ItemGroup>
-    <BundleResource Include="Resources\disenoGrafico.png" />
+    <BundleResource Include="Resources\graphicdesing.png" />
   </ItemGroup>
   <ItemGroup>
-    <BundleResource Include="Resources\movil.png" />
+    <BundleResource Include="Resources\mobile.png" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\software.png" />
@@ -133,19 +133,19 @@
     <BundleResource Include="Resources\web.png" />
   </ItemGroup>
   <ItemGroup>
-    <BundleResource Include="Resources\redes.png" />
+    <BundleResource Include="Resources\networks.png" />
   </ItemGroup>
   <ItemGroup>
-    <BundleResource Include="Resources\sistemas.png" />
+    <BundleResource Include="Resources\systems.png" />
   </ItemGroup>
   <ItemGroup>
-    <BundleResource Include="Resources\ventas.png" />
+    <BundleResource Include="Resources\sales.png" />
   </ItemGroup>
   <ItemGroup>
-    <BundleResource Include="Resources\videoJuegos.png" />
+    <BundleResource Include="Resources\videogames.png" />
   </ItemGroup>
   <ItemGroup>
-    <BundleResource Include="Resources\baseDeDatos.png" />
+    <BundleResource Include="Resources\database.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Assets.xcassets\icon.imageset\" />
