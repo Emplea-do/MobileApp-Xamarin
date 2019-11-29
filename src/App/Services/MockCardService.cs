@@ -21,7 +21,7 @@ namespace App.Services
                 new JobCards { NameCard = "Redes y telecomunicaciones", Image = "networks.png"},
                 new JobCards { NameCard = "IT Ventas", Image = "sales.png"},
                 new JobCards { NameCard = "Administrador de Base de Datos", Image = "database.png"},
-                new JobCards { NameCard = "Desarrollo de Videojuegos", Image = "videogame.png"}
+                new JobCards { NameCard = "Desarrollo de Videojuegos", Image = "videogames.png"}
             };
         }
     }
