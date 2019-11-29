@@ -6,7 +6,69 @@
              mc:Ignorable="d"
              x:Class="App.App">
     <Application.Resources>
-        <ResourceDictionary>            <Color x:Key="ActiveColor">#13BAC3</Color>            <Color x:Key="InactiveColor">#94A1B2</Color>            <Color x:Key="LocationLabelColor">#9EABBA</Color>            <Color x:Key="CardBackGroundColor">White</Color>            <Color x:Key="TextLabelColor">Black</Color>            <Color x:Key="BackGroundColor">#F8F8F8</Color>            <Color x:Key="BGRemoteLabel">#13BAC3</Color>            <!---Category Colors-->            <Color x:Key="GraphicDesign">#EF476F</Color>            <Color x:Key="WebDeveloper">#3D3D8C</Color>            <Color x:Key="MobileDeveloper">#8075FF</Color>            <Color x:Key="SoftwareDeveloper">#0061C3</Color>            <Color x:Key="SysAdmin">#32C5FF</Color>            <Color x:Key="TIC">#119DA4</Color>            <Color x:Key="IT">#74BE58</Color>            <Color x:Key="DBA">#FFC857</Color>            <Color x:Key="GameDeveloper">#FF9C57</Color>            <!--End of Category Colors-->            <!---Category Colors Tags-->            <Color x:Key="TGraphicDesign">#E81E63</Color>            <Color x:Key="TWebDeveloper">#9C27AF</Color>            <Color x:Key="TMobileDeveloper">#673AB6</Color>            <Color x:Key="TSoftwareDeveloper">#3F51B4</Color>            <Color x:Key="TSysAdmin">#06A9F3</Color>            <Color x:Key="TTIC">#009688</Color>            <Color x:Key="TIT">#8BC24A</Color>            <Color x:Key="TDBA">#FFE500</Color>            <Color x:Key="TGameDeveloper">#FE9800</Color>            <!--End of Category Colors-->            <OnPlatform x:TypeArguments="x:String"                     x:Key="FontAwesomeBrands">                <On Platform="Android"                     Value="fa-brands-400.ttf#Regular" />                <On Platform="iOS"                     Value="FontAwesome5Brands-Regular" />            </OnPlatform>            <OnPlatform x:TypeArguments="x:String"                 x:Key="FontAwesomeSolid">                <On Platform="Android"                     Value="fa-solid-900.ttf#Regular" />                <On Platform="iOS"                     Value="FontAwesome5Free-Solid" />            </OnPlatform>            <OnPlatform x:TypeArguments="x:String"                 x:Key="FontAwesomeRegular">                <On Platform="Android"                     Value="fa-regular-400.ttf#Regular" />                <On Platform="iOS"                     Value="FontAwesome5Free-Regular" />            </OnPlatform>        </ResourceDictionary>
+        <ResourceDictionary>
+                    <!--JobListView-->
+                    <Color x:Key="ActiveColor">#13BAC3</Color>
+                    <Color x:Key="InactiveColor">#94A1B2</Color>
+                    <Color x:Key="LocationLabelColor">#9EABBA</Color>
+                    <Color x:Key="CardBackGroundColor">White</Color>
+                    <Color x:Key="TextLabelColor">Black</Color>
+                    <Color x:Key="BackGroundColor">#F8F8F8</Color>
+                    <Color x:Key="BGRemoteLabel">#13BAC3</Color>
+                    <!---Category Colors-->
+                    <Color x:Key="GraphicDesign">#EF476F</Color>
+                    <Color x:Key="WebDeveloper">#3D3D8C</Color>
+                    <Color x:Key="MobileDeveloper">#8075FF</Color>
+                    <Color x:Key="SoftwareDeveloper">#0061C3</Color>
+                    <Color x:Key="SysAdmin">#32C5FF</Color>
+                    <Color x:Key="TIC">#119DA4</Color>
+                    <Color x:Key="IT">#74BE58</Color>
+                    <Color x:Key="DBA">#FFC857</Color>
+                    <Color x:Key="GameDeveloper">#FF9C57</Color>
+                    <!--End of Category Colors-->
+                    <!---Category Colors Tags-->
+                    <Color x:Key="TGraphicDesign">#E81E63</Color>
+                    <Color x:Key="TWebDeveloper">#9C27AF</Color>
+                    <Color x:Key="TMobileDeveloper">#673AB6</Color>
+                    <Color x:Key="TSoftwareDeveloper">#3F51B4</Color>
+                    <Color x:Key="TSysAdmin">#06A9F3</Color>
+                    <Color x:Key="TTIC">#009688</Color>
+                    <Color x:Key="TIT">#8BC24A</Color>
+                    <Color x:Key="TDBA">#FFE500</Color>
+                    <Color x:Key="TGameDeveloper">#FE9800</Color>
+                    <!--End of Category Colors-->
 
+                    <!--SearchView-->
+                     <Color x:Key="SwitchColor">#13bac3</Color>
+                     <Color x:Key="ThumbColor">White</Color>
+                     <Color x:Key="TextColoButtonSearch">White</Color>
+                     <Color x:Key="BackgroundColorButtonSearch">#13bac3</Color>
+                    
+
+                    <!--Fonts-->
+                        <OnPlatform x:TypeArguments="x:String" 
+                                x:Key="FontAwesomeBrands">
+                            <On Platform="Android" 
+                                Value="fa-brands-400.ttf#Regular" />
+                            <On Platform="iOS" 
+                                Value="FontAwesome5Brands-Regular" />
+                        </OnPlatform>
+
+                        <OnPlatform x:TypeArguments="x:String" 
+                            x:Key="FontAwesomeSolid">
+                            <On Platform="Android" 
+                                Value="fa-solid-900.ttf#Regular" />
+                            <On Platform="iOS" 
+                                Value="FontAwesome5Free-Solid" />
+                        </OnPlatform>
+
+                        <OnPlatform x:TypeArguments="x:String" 
+                            x:Key="FontAwesomeRegular">
+                            <On Platform="Android" 
+                                Value="fa-regular-400.ttf#Regular" />
+                            <On Platform="iOS" 
+                                Value="FontAwesome5Free-Regular" />
+                        </OnPlatform>
+        </ResourceDictionary>
     </Application.Resources>
 </Application>

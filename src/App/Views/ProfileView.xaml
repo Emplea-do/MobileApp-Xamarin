@@ -1,11 +1,95 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="App.Views.ProfileView">
-    
+             x:Class="App.Views.ProfileView"
+             xmlns:Local="clr-namespace:App.ViewModels">
     <ContentPage.Content>
-           <Label Text="Welcome Perfil to App Mobile Emplea.do!" 
-           HorizontalOptions="Center"
-           VerticalOptions="CenterAndExpand" />
+<StackLayout Orientation="Vertical" Margin="0,20,0,0">
+    <Label Text="Hola, ¿Qué tipo de trabajo estamos buscando?" Padding="0" FontSize="Large" FontAttributes="Bold" Margin="0,20,0,0" />
+           
+            <Entry Placeholder="Keywords" Margin="0,15,0,0"  InputTransparent="True" Keyboard="Text" />
+            <Label Text="Buscar por Categoría" Padding="0,13,0,0" />
+    <ScrollView Padding="0,5,0,0" Orientation="Horizontal" HorizontalScrollBarVisibility="Never">
+        <StackLayout HorizontalOptions="Start" Orientation="Horizontal">
+                    <Frame HasShadow="False"
+                       BorderColor="DarkGray"
+                       CornerRadius="5"
+                       HeightRequest="70"
+                       WidthRequest="70"
+                       HorizontalOptions="Center"
+                       VerticalOptions="Center">
+                        <StackLayout>
+                            <Image Source="disenoGrafico.png"
+                               Aspect="AspectFill"
+                               HeightRequest="50"
+                               WidthRequest="50"
+                               HorizontalOptions="Center"/>
+                            <Label Text="Diseño Gráfico"
+                                   FontSize="Micro"
+                               HorizontalOptions="Center" />
+                          
+                        </StackLayout>
+                    </Frame>
+                    <Frame HasShadow="False"
+                       BorderColor="DarkGray"
+                       CornerRadius="5"
+                       HeightRequest="70"
+                       WidthRequest="70"
+                       HorizontalOptions="Center"
+                       VerticalOptions="Center">
+                        <StackLayout>
+                            <Image Source="web.png"
+                               Aspect="AspectFill"
+                               HeightRequest="50"
+                               WidthRequest="50"
+                               HorizontalOptions="Center"/>
+                            <Label Text="Desarrollo Web"
+                                   FontSize="Micro"
+                               HorizontalOptions="Center" />
+
+                        </StackLayout>
+                    </Frame>
+                    <Frame HasShadow="False"
+                       BorderColor="DarkGray"
+                       CornerRadius="5"
+                       HeightRequest="70"
+                       WidthRequest="70"
+                       HorizontalOptions="Center"
+                       VerticalOptions="Center">
+                        <StackLayout>
+                            <Image Source="movil.png"
+                               Aspect="AspectFill"
+                               HeightRequest="50"
+                               WidthRequest="50"
+                               HorizontalOptions="Center"/>
+                            <Label Text="Desarrollo Movil"
+                                   FontSize="Micro"
+                               HorizontalOptions="Center" />
+
+                        </StackLayout>
+                    </Frame>
+                    <Frame HasShadow="False"
+                       BorderColor="DarkGray"
+                       CornerRadius="5"
+                       HeightRequest="70"
+                       WidthRequest="70"
+                       HorizontalOptions="Center"
+                       VerticalOptions="Center">
+                        <StackLayout>
+                            <Image Source="software.png"
+                               Aspect="AspectFill"
+                               HeightRequest="50"
+                               WidthRequest="50"
+                               HorizontalOptions="Center"/>
+                            <Label Text="Desarrollo Software"
+                                   FontSize="Micro"
+                               HorizontalOptions="Center" />
+
+                        </StackLayout>
+                    </Frame>
+                </StackLayout>
+    </ScrollView>
+<Switch IsToggled="False" />
+</StackLayout>
     </ContentPage.Content>
 </ContentPage>

@@ -16,7 +16,7 @@ namespace App.Services
         public const int PageSize = 10;
 
 
-        public static readonly Color  Background = Color.FromHex("F8F8F8");
+        public static readonly Color Background = Color.FromHex("F8F8F8");
 
     }
 }
