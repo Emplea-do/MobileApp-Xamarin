@@ -3,16 +3,20 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+              xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core" 
+             ios:Page.UseSafeArea="True"
              mc:Ignorable="d"
              x:Class="App.Views.JosbListView"
              xmlns:Local="clr-namespace:App.ViewModels"
-             Shell.NavBarIsVisible="False"
+             Shell.NavBarIsVisible="True"
              BackgroundColor="{StaticResource BackGroundColor}"
              >
+        
     <ContentPage.BindingContext>
         <Local:JobsListViewModel />
     </ContentPage.BindingContext>
     <ContentPage.Content>
+
         <StackLayout Padding="20,20,20,0">
             <StackLayout Orientation="Horizontal" BackgroundColor="{StaticResource CardBackGroundColor}"
                          Padding="15,12">
@@ -27,24 +31,25 @@
                        TextColor="{StaticResource TextLabelColor}"/>
             </StackLayout>
             <Label Text="{Binding JobsList.TotalItemCount, StringFormat='{0} Empleos Disponibles'}"
-                   FontSize="26"
+                   FontSize="Title"
                    TextColor="{StaticResource TextLabelColor}"
                    FontAttributes="Bold"
                    HorizontalOptions="StartAndExpand"
                    Margin="0,10"/>
-            <ListView ItemsSource="{Binding JobsList.Jobs}" 
-                      SeparatorVisibility="None" 
-                      SelectionMode="None"
+            <ListView ItemsSource="{Binding JobsList.Jobs}" VerticalOptions="StartAndExpand"
+                      SeparatorVisibility="None"  CachingStrategy="RecycleElement"
+                      SelectionMode="None" BackgroundColor="{StaticResource BackGroundColor}"
                       HasUnevenRows="True">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
-                            <Frame CornerRadius="4" BackgroundColor="{StaticResource CardBackGroundColor}" Margin="0,0,0,8"
-                                   Padding="10,17"
-                                   HasShadow="True" >
+                            <Frame CornerRadius="4" BackgroundColor="{StaticResource CardBackGroundColor}" Margin="5,0,0,5"
+                                   Padding="10,10"
+                                   HasShadow="False" >
                                 <Grid HorizontalOptions="FillAndExpand" BackgroundColor="{StaticResource CardBackGroundColor}">
 
                                     <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"/>
                                         <RowDefinition Height="Auto"/>
                                         <RowDefinition Height="Auto"/>
                                         <RowDefinition Height="Auto"/>
@@ -57,7 +62,7 @@
                                     <Label Grid.Row="0"
                                        Grid.Column="0"
                                        Text="{Binding Title}"  
-                                       FontSize="20"
+                                       FontSize="Medium"
                                            HorizontalOptions="Start"
                                            TextColor="{StaticResource TextLabelColor}"
                                            Padding="0"
@@ -65,7 +70,7 @@
 
                                     <Frame Grid.Row="0" Grid.Column="1" Grid.RowSpan="2"
                                            BorderColor="White"
-                                           CornerRadius="50"
+                                           CornerRadius="0"
                                            HeightRequest="20"
                                            WidthRequest="20"
                                            IsClippedToBounds="True"
@@ -88,16 +93,17 @@
                                         <Frame CornerRadius="2" BackgroundColor="{StaticResource BGRemoteLabel}" IsVisible="{Binding IsRemote}"
                                                Padding="4,2"
                                                Margin="0,0,5,0"
+                                               HasShadow="False"
                                                HorizontalOptions="Start">
                                             <Label Text="Remoto" 
                                                    TextColor="White"
-                                                   FontSize="12"
+                                                   FontSize="Micro"
                                                    Padding="0"
                                                Margin="0"/>
                                         </Frame>
 
                                         <Label Text="{Binding CompanyName}" 
-                                               FontSize="16"
+                                               FontSize="Small"
                                                TextColor="{StaticResource TextLabelColor}"
                                                Padding="0"
                                                Margin="0"/>
@@ -122,20 +128,24 @@
                                                    Margin="0"
                                                    Padding="0" VerticalOptions="Center"
                                                     TextColor="{StaticResource InactiveColor}"/>
-                                        <Label Grid.Row="0" Grid.Column="1"
+                                        <Label Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2"
                                                    Text="{Binding Location}"
+                                               FontSize="Small"
                                                    Margin="0"
-                                                   Padding="0" VerticalOptions="Center" LineBreakMode="NoWrap" TextColor="{StaticResource LocationLabelColor}"/>
+                                                   Padding="0" VerticalOptions="Center"
+                                               LineBreakMode="NoWrap" TextColor="{StaticResource LocationLabelColor}"/>
 
-                                        <Frame Grid.Row="0" Grid.Column="2" CornerRadius="2" BackgroundColor="{StaticResource TWebDeveloper}"
-                                               Padding="4,2"
-                                               HorizontalOptions="End"
-                                               Margin="0"
-                                               >
-                                            <Label Text="Desarrollador Web" HorizontalOptions="End" Margin="0" TextColor="White"/>
-                                        </Frame>
                                         
                                     </Grid>
+                                    
+                                        <Frame Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" CornerRadius="2" BackgroundColor="{StaticResource TWebDeveloper}"
+                                               Padding="4,2"
+                                               HorizontalOptions="End"
+                                               HasShadow="False"
+                                               Margin="0"
+                                               >
+                                            <Label Text="Desarrollador Web" FontSize="Micro" HorizontalOptions="End"  VerticalOptions="End" Margin="0" TextColor="White"/>
+                                        </Frame>
                                 </Grid>
                             </Frame>
                         </ViewCell>
