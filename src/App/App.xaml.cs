@@ -11,7 +11,7 @@ namespace App
             InitializeComponent();
 
             // MainPage = new MainPage();
-            MainPage = new Views.JobDetailView();
+            MainPage = new MainShell();
         }
 
         protected override void OnStart()
