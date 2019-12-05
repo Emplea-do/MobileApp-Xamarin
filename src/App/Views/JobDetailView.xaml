@@ -1,7 +1,9 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <ContentPage
     BackgroundColor="#F8F8F8"
-    xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="App.Views.JobDetailView">
+    xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="App.Views.JobDetailView"
+    xmlns:Local="clr-namespace:App.ViewModels">
+
     <ContentPage.Resources>
         <ResourceDictionary>
             <Color x:Key="highlightBlue">#13BAC3</Color>
@@ -48,6 +50,10 @@
         </ResourceDictionary>
     </ContentPage.Resources>
 
+    <ContentPage.BindingContext>
+        <Local:JobDetailViewModel/>
+    </ContentPage.BindingContext>
+
  <ScrollView>
     <StackLayout >
        <StackLayout Orientation="Horizontal"
@@ -72,13 +78,13 @@
                        HorizontalOptions="EndAndExpand" VerticalOptions="Center"/>
      </StackLayout>
         <StackLayout Padding="20, 15" >
-           <Label Text="Senior iOS developer" FontSize="27"
+           <Label Text="{Binding JobsList.Title}" FontSize="27"
                   FontAttributes="Bold"
                   TextColor="black"/>
             <StackLayout Orientation="Horizontal" 
                          Spacing="2">
                 <Frame CornerRadius="2" BackgroundColor="{StaticResource highlightBlue}"
-                       IsVisible="{Binding IsRemote}"
+                       IsVisible="{Binding JobsList.IsRemote}"
                         Padding="4,2"
                         Margin="0,0,5,0" HasShadow="False"
                         HorizontalOptions="Start">
@@ -86,7 +92,7 @@
                            TextColor="White" 
                            FontSize="12"/>
                 </Frame>
-                <Label Text="Megsoft" 
+                <Label Text="{Binding JobsList.CompanyName}" 
                     FontSize="16"
                     TextColor="Black"
                     FontAttributes="Bold"/>
@@ -99,13 +105,13 @@
                     VerticalOptions="Center"
                     />
                 <Label TextColor="{StaticResource descriptionGray}"
-                       Text="Santo Domingo, RD" VerticalOptions="Center"/>
+                       Text="{Binding JobsList.Location}" VerticalOptions="Center"/>
                 <Frame  CornerRadius="4" BackgroundColor="#8075ff"
                         Padding="5,3"
                         HorizontalOptions="EndAndExpand"
                         HasShadow="False"
                         >
-                    <Label Text="Desarrollador Web" HorizontalOptions="End" TextColor="White"/>
+                    <Label Text="{Binding JobsList.JobType}" HorizontalOptions="End" TextColor="White"/>
                 </Frame>
             </StackLayout>
             
@@ -114,41 +120,11 @@
        <StackLayout BackgroundColor="white" Padding="20" Margin="0,0,0,-30">
            <Label Text="Detalles del puesto" Style="{StaticResource subtitle}"/>
            <BoxView Style="{StaticResource line}"/>
-           <Label Text="We’re a USA based company in Miami, FL, and Santiago DR, and we’re looking for candidates like you to fill an IOS Developer position that focuses on designing/implementing the overall architecture of mobile applications that interacts with complex API’s and implement complex business logic and an awesome UI/UX. We’d love to hear from qualified, self-learner and proactive people that loves creating wonderful and scalable apps with high quality and standardized code.
-
-Expertise in:
-
-- Apple’s Xcode IDE
-- Swift (3.0 and above).
-- Both iPhone and iPad Apps and Architectures
-- Apple Frameworks and APIs
-
-Vast Knowledge of:
-
-- Mobile development and best practices
-- Application life cycle including Certificates, Profiles and Publishing to the App Store
-- Strong understanding of security best practices at the application and network level
-- UI and UX design experience
-- Consuming REST APIs and JSON data.
-- Apple Human Interface Guidelines
-- Implementation of Push Notifications
-- Git code repository technology
-
-Ideal / Optional / Plus:
-
-- TFS
-- Jira
-- Scrum and Agile methodologies"
-                  Style="{StaticResource description}"/>
-
+           <Label Text="{Binding JobsList.DescriptionHtml}" Style="{StaticResource description}" TextType="Html" />
+           
            <Label Text="Como aplicar" Style="{StaticResource subtitle}"/>
            <BoxView Style="{StaticResource line}"/>
-           <Label Text="Please send your resume to hr@help-net.net and answer the following questions:
-
-What is your English level?
-How many years working with native iOS development do you have?
-
-Enviar CV a hr@help-net.net, recuerda agregar tu cover letter." Style="{StaticResource description}" />
+           <Label Text="{Binding JobsList.HowToApplyHtml}" Style="{StaticResource description}" TextType="Html" />
 
            <Label Text="Sobre la compañía" Style="{StaticResource subtitle}"/>
            <BoxView Style="{StaticResource line}"/>
@@ -163,12 +139,10 @@ Enviar CV a hr@help-net.net, recuerda agregar tu cover letter." Style="{StaticRe
                 HasShadow="False"
                 Margin="0, 10"
                 >
-               <Label Text="Logo" TextColor="white"
-                      HorizontalOptions="Center"
-                      VerticalOptions="Center"/>
+               <Image Source="{Binding Path=JobsList.CompanyLogoUrl}" Aspect="AspectFill"/>
            </Frame>
            <Label FontSize="22" FontAttributes="Bold"
-                  Text="Helpnet" TextColor="Black"/>
+                  Text="{Binding Path=JobsList.CompanyName}" TextColor="Black"/>
            <Label Text="We build custom applications to help you organize and automate those tasks that are repetitive, predictable, and manual.
 
 Whether you’re looking for automation or talent to expand your team, Helpnet provides custom solutions to help you transform."
@@ -176,7 +150,7 @@ Whether you’re looking for automation or talent to expand your team, Helpnet p
 
            <Button BackgroundColor="{StaticResource highlightBlue}"
                    Text="Mas sobre la compañía" TextColor="White"
-                   FontAttributes="Bold" FontSize="24" Padding="30, 22"/>
+                   FontAttributes="Bold" FontSize="22" Padding="28, 20"/>
 
 
            <Label Text="Más empleos de esta compañía" Style="{StaticResource subtitle}"/>

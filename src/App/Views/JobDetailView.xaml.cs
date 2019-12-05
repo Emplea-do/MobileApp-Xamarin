@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-
 using Xamarin.Forms;
 
 namespace App.Views
@@ -10,6 +9,7 @@ namespace App.Views
         public JobDetailView()
         {
             InitializeComponent();
+
         }
     }
 }

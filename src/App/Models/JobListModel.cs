@@ -17,8 +17,21 @@ namespace App.Models
         public int ViewCount { get; set; }
         public int Likes { get; set; }
         public string CompanyLogoUrl { get; set; }
-        public string Description { get; set; }
+        public string Description { get;set; }
+        public string DescriptionHtml {
+            get {
+                string textHtml = "<html lang='es'><head><meta charset='UTF-8'/><style>body{font-family: 'Arial'; font-size: 18px; color: #9eabba;}</style></head><body>";
+                textHtml = textHtml + Description + "</body></html>";
+                return textHtml;
+            } }
         public string HowToApply { get; set; }
+        public string HowToApplyHtml {
+            get {
+                string textHtml = "<html><head><style>body{font-family: 'Arial'; font-size: 18px; color: #9eabba;}</style></head><body>";
+                textHtml = textHtml + HowToApply + "</body></html>";
+                return textHtml;
+            }
+        }
     }
 
     public class JobListModel
