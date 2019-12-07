@@ -12,25 +12,35 @@ namespace App.ViewModels
 {
     public class JobDetailViewModel : INotifyPropertyChanged
     {
-        public Jobs JobsList { get; set; }
+        public JobDetailModel JobsDetail { get; set; }
+        public Command OpenJobWebURLCommand { get; set; }
 
         public JobDetailViewModel()
         {
 
             new Action(async () => await LoadData())();
+
+            OpenJobWebURLCommand = new Command<string>(OpenJobWebURL);
         }
         public async Task LoadData()
         {
 
             var Data = await AppConstant.ApiUrl
-            .AppendPathSegment(AppConstant.ApiEndPoint)
-            .SetQueryParams(new { pagesize = AppConstant.PageSize, page = 1 })
+            .AppendPathSegment(AppConstant.ApiEndPoint+"/detail/1238")
             .WithHeader("Ocp-Apim-Subscription-Key", AppConstant.AppSecrets)
-            .GetJsonAsync<JobListModel>();
+            .GetJsonAsync<JobDetailModel>();
 
-            JobsList = Data.Jobs.Where(a => a.Link == "1327").FirstOrDefault();
+            JobsDetail = Data;
+        }
+
+        
+        public void OpenJobWebURL(string Url) {
+            
+            Device.OpenUri(new Uri(Url));
 
         }
+
+
 
         public event PropertyChangedEventHandler PropertyChanged;
     }
