@@ -1,0 +1,348 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage
+    BackgroundColor="#F8F8F8"
+    xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="App.Views.JobDetailView"
+    xmlns:Local="clr-namespace:App.ViewModels">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+
+            <Style x:Key="subtitle" TargetType="Label">
+                <Setter Property="TextColor" Value="black"/>
+                <Setter Property="FontAttributes" Value="Bold"/>
+                <Setter Property="FontSize" Value="24"/>
+                <Setter Property="Margin" Value="0, 20, 0, 0"/>
+            </Style>
+
+            <Style x:Key="line" TargetType="BoxView">
+                <Setter Property="BackgroundColor" Value="{StaticResource ActiveColor}"/>
+                <Setter Property="HeightRequest" Value="5"/>
+                <Setter Property="WidthRequest" Value="68"/>
+                <Setter Property="HorizontalOptions" Value="StartAndExpand"/>
+                <Setter Property="Margin" Value="0, 4"/>
+            </Style>
+
+            <Style x:Key="share" TargetType="Frame">
+                <Setter Property="BackgroundColor" Value="{StaticResource ActiveColor}"/>
+                <Setter Property="CornerRadius" Value="42"/>
+                <Setter Property="HeightRequest" Value="47"/>
+                <Setter Property="WidthRequest" Value="47"/>
+                <Setter Property="HasShadow" Value="False"/>
+                <Setter Property="Margin" Value="0, 0, 20, 0"/>
+            </Style>
+
+            <Style x:Key="shareLbl" TargetType="Label">
+                <Setter Property="TextColor" Value="White"/>
+                <Setter Property="FontFamily" Value="{StaticResource FontAwesomeBrands}"/>
+                <Setter Property="FontSize" Value="47"/>
+                <Setter Property="HorizontalOptions" Value="Center"/>
+                <Setter Property="VerticalOptions" Value="Center"/>
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ContentPage.BindingContext>
+        <Local:JobDetailViewModel/>
+    </ContentPage.BindingContext>
+
+ <ScrollView>
+    <StackLayout >
+       <StackLayout Orientation="Horizontal"
+                         Padding="15,12">
+           <StackLayout.Margin>
+               <OnPlatform
+                   x:TypeArguments="Thickness"
+                   iOS="10, 23, 20, 10"
+                   Android="10, 20, 20, 10"/>
+           </StackLayout.Margin>
+                <Label Text="&#xf053;" FontFamily="{StaticResource FontAwesomeSolid}"
+                       FontSize="30"
+                       VerticalOptions="Center" HorizontalOptions="StartAndExpand" 
+                       TextColor="Black"/>
+                <Label Text="DETAILS"
+                       FontSize="20"
+                       VerticalOptions="Center" HorizontalOptions="CenterAndExpand"
+                       Margin="0"
+                       TextColor="Black"/>
+
+                <Label FontFamily="{StaticResource FontAwesomeSolid}" Text="&#xf004;"
+                       FontSize="35"  TextColor="{StaticResource ActiveColor}"
+                       HorizontalOptions="EndAndExpand" VerticalOptions="Center">
+                </Label>
+     </StackLayout>
+        <StackLayout Padding="20, 15" >
+           <Label Text="{Binding JobsDetail.JobTitle}" FontSize="27"
+                  FontAttributes="Bold"
+                  TextColor="black"/>
+            <StackLayout Orientation="Horizontal" 
+                         Spacing="2">
+                <Frame CornerRadius="2" BackgroundColor="{StaticResource ActiveColor}"
+                       IsVisible="{Binding JobsDetail.IsRemote}"
+                        Padding="4,2"
+                        Margin="0,0,5,0" HasShadow="False"
+                        HorizontalOptions="Start">
+                    <Label Text="Remoto" FontAttributes="Bold"
+                           TextColor="White" 
+                           FontSize="12"/>
+                </Frame>
+                <Label Text="{Binding JobsDetail.CompanyName}" 
+                    FontSize="16"
+                    TextColor="Black"
+                    FontAttributes="Bold"/>
+            </StackLayout>
+            <StackLayout Margin="0, 5, 3, 0">
+                <StackLayout Orientation="Horizontal">
+                    <Label
+                        TextColor="{StaticResource LocationLabelColor}"
+                        Text="&#xf3c5;"
+                        FontFamily="{StaticResource FontAwesomeSolid}"
+                        VerticalOptions="Center"
+                        />
+                    <Label TextColor="{StaticResource LocationLabelColor}"
+                           Text="{Binding JobsDetail.Location}" VerticalOptions="Center"/>
+                </StackLayout>
+                
+                <Frame  CornerRadius="4" BackgroundColor="#8075ff"
+                        Padding="5,3"
+                        HorizontalOptions="EndAndExpand"
+                        HasShadow="False"
+                        >
+                    <Label Text="Desarrollo para Móviles" HorizontalOptions="End" TextColor="White"/>
+                </Frame>
+            </StackLayout>
+            
+        </StackLayout>
+         
+       <StackLayout BackgroundColor="white" Padding="20" Margin="0,0,0,-30">
+           <Label Text="Detalles del puesto" Style="{StaticResource subtitle}"/>
+           <BoxView Style="{StaticResource line}"/>
+           <Label Text="{Binding JobsDetail.JobDescriptionHtml}" TextType="Html" />
+           
+           <Label Text="Como aplicar" Style="{StaticResource subtitle}"/>
+           <BoxView Style="{StaticResource line}"/>
+           <Label Text="{Binding JobsDetail.HowToApplyHtml}" TextType="Html" />
+
+           <Label Text="Sobre la compañía" Style="{StaticResource subtitle}"/>
+           <BoxView Style="{StaticResource line}"/>
+           <Frame
+                BorderColor="White"
+                CornerRadius="80"
+                HeightRequest="120"
+                WidthRequest="120"
+                HorizontalOptions="Center"
+                VerticalOptions="Center"
+                HasShadow="False"
+                Margin="0, 10"
+                >
+               <Image Source="{Binding JobsDetail.Company.LogoUrl}" Aspect="AspectFill"/>
+           </Frame>
+           <Label FontSize="22" FontAttributes="Bold"
+                  Text="{Binding JobsDetail.Company.Name}" TextColor="Black"/>
+           <Label Text="{Binding JobsDetail.Company.Email}"
+                  FontSize="18" TextColor="{StaticResource LocationLabelColor}" Margin="0, 10, 0, 20"/>
+
+           <Button BackgroundColor="{StaticResource ActiveColor}"
+                   Text="Mas sobre la compañía" TextColor="White"
+                   FontAttributes="Bold" FontSize="22" Padding="28, 20"
+                   Command="{Binding OpenJobWebURLCommand}" CommandParameter="{Binding JobsDetail.Company.Url}" />
+
+
+           <Label Text="Más empleos de esta compañía" Style="{StaticResource subtitle}"/>
+           <BoxView Style="{StaticResource line}"/>
+           <Frame CornerRadius="4" BackgroundColor="{StaticResource CardBackGroundColor}" Margin="0,15,0,0"
+                    Padding="10,10" HasShadow="False">
+                <Grid HorizontalOptions="FillAndExpand"
+                      BackgroundColor="{StaticResource CardBackGroundColor}">
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height=" Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Label Grid.Row="0"
+                        Grid.Column="0"
+                        Text="Back End Developer"
+                        FontAttributes="Bold"
+                        FontSize="Medium"
+                            HorizontalOptions="Start"
+                            TextColor="{StaticResource TextLabelColor}"
+                            Padding="0"
+                            Margin="0" LineBreakMode="NoWrap"/>
+                    <StackLayout Grid.Row="1"
+                                Grid.Column="0"
+                                Orientation="Horizontal"
+                                    Padding="0"
+                                    Spacing="0">
+                        <Frame CornerRadius="2" BackgroundColor="{StaticResource BGRemoteLabel}"
+                                Padding="4,2"
+                                Margin="0,0,5,0"
+                                HasShadow="False"
+                                HorizontalOptions="Start">
+                            <Label Text="Remoto" 
+                                    TextColor="White"
+                                    FontSize="Micro"
+                                    Padding="0"
+                                Margin="0"/>
+                        </Frame>
+
+                        <Label Text="Megsoft" 
+                                FontSize="Small"
+                                TextColor="{StaticResource TextLabelColor}"
+                                Padding="0"
+                                Margin="0"/>
+                    </StackLayout>
+
+
+                    <Grid Grid.Row="2"
+                                    Grid.Column="0"
+                                    Grid.ColumnSpan="2" HorizontalOptions="FillAndExpand" RowSpacing="0" Padding="0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+
+                        <Label Grid.Row="0" Grid.Column="0" 
+                                    Text="&#xf3c5;"
+                                    FontFamily="{StaticResource FontAwesomeSolid}"
+                                    Margin="0"
+                                    Padding="0" VerticalOptions="Center"
+                                    TextColor="{StaticResource InactiveColor}"/>
+                        <Label Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2"
+                                    Text="Santo Domingo, RD"
+                                FontSize="Small"
+                                    Margin="0"
+                                    Padding="0" VerticalOptions="Center"
+                                LineBreakMode="NoWrap" TextColor="{StaticResource LocationLabelColor}"/>
+
+                                        
+                    </Grid>
+                                    
+                        <Frame Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" CornerRadius="2" BackgroundColor="{StaticResource TWebDeveloper}"
+                                Padding="4,2"
+                                HorizontalOptions="End"
+                                HasShadow="False"
+                                Margin="0"
+                                >
+                            <Label Text="Desarrollador Web" FontSize="Micro" HorizontalOptions="End"  VerticalOptions="End" Margin="0" TextColor="White"/>
+                        </Frame>
+                </Grid>
+            </Frame>
+           <Frame CornerRadius="4" BackgroundColor="{StaticResource CardBackGroundColor}" Margin="0,10,0,0"
+                    Padding="10,10" HasShadow="False">
+                <Grid HorizontalOptions="FillAndExpand"
+                      BackgroundColor="{StaticResource CardBackGroundColor}">
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height=" Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Label Grid.Row="0"
+                        Grid.Column="0"
+                        Text="Back End Developer"
+                        FontAttributes="Bold"
+                        FontSize="Medium"
+                            HorizontalOptions="Start"
+                            TextColor="{StaticResource TextLabelColor}"
+                            Padding="0"
+                            Margin="0" LineBreakMode="NoWrap"/>
+
+                    <StackLayout Grid.Row="1"
+                                Grid.Column="0"
+                                Orientation="Horizontal"
+                                    Padding="0"
+                                    Spacing="0">
+                        <Frame CornerRadius="2" BackgroundColor="{StaticResource BGRemoteLabel}"
+                                Padding="4,2"
+                                Margin="0,0,5,0"
+                                HasShadow="False"
+                                HorizontalOptions="Start">
+                            <Label Text="Remoto" 
+                                    TextColor="White"
+                                    FontSize="Micro"
+                                    Padding="0"
+                                Margin="0"/>
+                        </Frame>
+
+                        <Label Text="Megsoft" 
+                                FontSize="Small"
+                                TextColor="{StaticResource TextLabelColor}"
+                                Padding="0"
+                                Margin="0"/>
+                    </StackLayout>
+
+
+                    <Grid Grid.Row="2"
+                                    Grid.Column="0"
+                                    Grid.ColumnSpan="2" HorizontalOptions="FillAndExpand" RowSpacing="0" Padding="0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+
+                        <Label Grid.Row="0" Grid.Column="0" 
+                                    Text="&#xf3c5;"
+                                    FontFamily="{StaticResource FontAwesomeSolid}"
+                                    Margin="0"
+                                    Padding="0" VerticalOptions="Center"
+                                    TextColor="{StaticResource InactiveColor}"/>
+                        <Label Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2"
+                                    Text="Santo Domingo, RD"
+                                FontSize="Small"
+                                    Margin="0"
+                                    Padding="0" VerticalOptions="Center"
+                                LineBreakMode="NoWrap" TextColor="{StaticResource LocationLabelColor}"/>
+
+                                        
+                    </Grid>
+                                    
+                        <Frame Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" CornerRadius="2" BackgroundColor="{StaticResource TWebDeveloper}"
+                                Padding="4,2"
+                                HorizontalOptions="End"
+                                HasShadow="False"
+                                Margin="0"
+                                >
+                            <Label Text="Desarrollador Web" FontSize="Micro" HorizontalOptions="End"  VerticalOptions="End" Margin="0" TextColor="White"/>
+                        </Frame>
+                </Grid>
+            </Frame>
+
+           <Label Text="Compartir" Style="{StaticResource subtitle}"/>
+           <BoxView Style="{StaticResource line}"/>
+           <StackLayout Orientation="Horizontal" Margin="0, 20" HorizontalOptions="CenterAndExpand">
+               <Frame Style="{StaticResource share}">
+                   <Label Text="&#xf39e;"
+                          Style="{StaticResource shareLbl}"/>
+               </Frame>
+               <Frame Style="{StaticResource share}">
+                   <Label Text="&#xf099;"
+                          Style="{StaticResource shareLbl}"/>
+               </Frame>
+               <Frame Style="{StaticResource share}">
+                   <Label Text="&#xf0e1;"
+                          Style="{StaticResource shareLbl}"/>
+               </Frame>
+           </StackLayout>
+       </StackLayout>
+   </StackLayout>
+ </ScrollView>
+    
+</ContentPage>
