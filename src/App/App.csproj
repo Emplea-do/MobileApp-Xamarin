@@ -37,15 +37,4 @@
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\web.png" />
   </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Remove="Views\JobDescriptionView.xaml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Remove="Views\JobDescriptionView.xaml.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Update="Views\JobDetailView.xaml.cs">
-      <DependentUpon>JobDetailView.xaml</DependentUpon>
-    </Compile>
-  </ItemGroup>
 </Project>
