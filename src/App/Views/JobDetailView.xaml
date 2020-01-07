@@ -41,9 +41,7 @@
         </ResourceDictionary>
     </ContentPage.Resources>
 
-    <ContentPage.BindingContext>
-        <Local:JobDetailViewModel/>
-    </ContentPage.BindingContext>
+    
 
  <ScrollView>
     <StackLayout >

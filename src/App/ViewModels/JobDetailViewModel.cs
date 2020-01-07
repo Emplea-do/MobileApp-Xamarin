@@ -15,18 +15,18 @@ namespace App.ViewModels
         public JobDetailModel JobsDetail { get; set; }
         public Command OpenJobWebURLCommand { get; set; }
 
-        public JobDetailViewModel()
+        public JobDetailViewModel(string Link)
         {
 
-            new Action(async () => await LoadData())();
+            new Action(async () => await LoadData(Link))();
 
             OpenJobWebURLCommand = new Command<string>(OpenJobWebURL);
         }
-        public async Task LoadData()
+        public async Task LoadData(string link)
         {
 
             var Data = await AppConstant.ApiUrl
-            .AppendPathSegment(AppConstant.ApiEndPoint+"/detail/1238")
+            .AppendPathSegment(AppConstant.ApiEndPoint+"/detail/"+link)
             .WithHeader("Ocp-Apim-Subscription-Key", AppConstant.AppSecrets)
             .GetJsonAsync<JobDetailModel>();
 
