@@ -17,12 +17,12 @@ namespace App.ViewModels
     {
         //public AppConstant ServiceConstant = new AppConstant();
         public JobListModel JobsList { get; set; }
-        public Command CallDetailView { get; set; }
+        public Command CallDetailScreenCommand { get; set; }
         public INavigation Navigation { get; set; }
         public JobsListViewModel(INavigation navshell)
         {
             this.Navigation = navshell;
-            CallDetailView = new Command<string>(async (string Link) => await OpenDetailView(Link));
+            CallDetailScreenCommand = new Command<string>(async (string Link) => await OpenDetailView(Link));
             new Action(async () => await LoadData())();
 
             

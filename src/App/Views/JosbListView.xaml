@@ -48,7 +48,7 @@
                                 
                                 <Grid HorizontalOptions="FillAndExpand" BackgroundColor="{StaticResource CardBackGroundColor}">
                                     <Grid.GestureRecognizers>
-                                        <TapGestureRecognizer NumberOfTapsRequired="1" Command="{Binding Source={x:Reference Name=JobListView},Path=BindingContext.CallDetailView}" CommandParameter="{Binding Link}"/>
+                                        <TapGestureRecognizer NumberOfTapsRequired="1" Command="{Binding Source={x:Reference Name=JobListView},Path=BindingContext.CallDetailScreenCommand}" CommandParameter="{Binding Link}"/>
                                     </Grid.GestureRecognizers>
                                     <Grid.RowDefinitions>
                                         <RowDefinition Height="Auto"/>
