@@ -22,7 +22,7 @@ namespace App.ViewModels
         public JobsListViewModel(INavigation navshell)
         {
             this.Navigation = navshell;
-            CallDetailScreenCommand = new Command<string>(async (string Link) => await OpenDetailView(Link));
+            CallDetailScreenCommand = new Command<string>(async (string Link) => await OpenDetailViewAsync(Link));
             new Action(async () => await LoadDataAsync())();
 
             
@@ -40,7 +40,7 @@ namespace App.ViewModels
 
         }
 
-        public async Task OpenDetailView(string link) {
+        public async Task OpenDetailViewAsync(string link) {
             
             await Navigation.PushAsync(new JobDetailView(link));
         

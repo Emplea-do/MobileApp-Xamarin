@@ -18,11 +18,11 @@ namespace App.ViewModels
         public JobDetailViewModel(string Link)
         {
 
-            new Action(async () => await LoadData(Link))();
+            new Action(async () => await LoadDataAsync(Link))();
 
             OpenJobWebURLCommand = new Command<string>(OpenJobWebURL);
         }
-        public async Task LoadData(string link)
+        public async Task LoadDataAsync(string link)
         {
 
             var Data = await AppConstant.ApiUrl
