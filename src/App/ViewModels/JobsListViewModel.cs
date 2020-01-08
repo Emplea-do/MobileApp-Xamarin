@@ -23,12 +23,12 @@ namespace App.ViewModels
         {
             this.Navigation = navshell;
             CallDetailScreenCommand = new Command<string>(async (string Link) => await OpenDetailView(Link));
-            new Action(async () => await LoadData())();
+            new Action(async () => await LoadDataAsync())();
 
             
         }
 
-        public async Task LoadData()
+        public async Task LoadDataAsync()
         {
             
             var Cards = await AppConstant.ApiUrl
