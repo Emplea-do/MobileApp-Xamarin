@@ -1,3 +1,4 @@
+using App.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,7 +16,7 @@ namespace App.Views
         public JosbListView()
         {
             InitializeComponent();
-            
+            BindingContext = new JobsListViewModel(Navigation);
         }
     }
 }

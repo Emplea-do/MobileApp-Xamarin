@@ -1,5 +1,6 @@
 ﻿using App.Models;
 using App.Services;
+using App.Views;
 using Flurl;
 using Flurl.Http;
 using System;
@@ -16,13 +17,18 @@ namespace App.ViewModels
     {
         //public AppConstant ServiceConstant = new AppConstant();
         public JobListModel JobsList { get; set; }
-        public JobsListViewModel()
+        public Command CallDetailScreenCommand { get; set; }
+        public INavigation Navigation { get; set; }
+        public JobsListViewModel(INavigation navshell)
         {
+            this.Navigation = navshell;
+            CallDetailScreenCommand = new Command<string>(async (string Link) => await OpenDetailViewAsync(Link));
+            new Action(async () => await LoadDataAsync())();
 
-            new Action(async () => await LoadData())();
+            
         }
 
-        public async Task LoadData()
+        public async Task LoadDataAsync()
         {
             
             var Cards = await AppConstant.ApiUrl
@@ -32,6 +38,12 @@ namespace App.ViewModels
                 .GetJsonAsync<JobListModel>();
             JobsList = Cards;
 
+        }
+
+        public async Task OpenDetailViewAsync(string link) {
+            
+            await Navigation.PushAsync(new JobDetailView(link));
+        
         }
         public event PropertyChangedEventHandler PropertyChanged;
     }
