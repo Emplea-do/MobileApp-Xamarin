@@ -1,122 +1,154 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-              xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core" 
-             ios:Page.UseSafeArea="True"
-             mc:Ignorable="d"
-             x:Class="App.Views.JosbListView"
-             xmlns:Local="clr-namespace:App.ViewModels"
-             Shell.NavBarIsVisible="True"
-             x:Name="JobListView"
-             BackgroundColor="{StaticResource BackGroundColor}"
-             >
-        
-    
+<ContentPage
+    x:Class="App.Views.JosbListView"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:Local="clr-namespace:App.ViewModels"
+    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    x:Name="JobListView"
+    ios:Page.UseSafeArea="True"
+    BackgroundColor="{StaticResource BackGroundColor}"
+    Shell.NavBarIsVisible="True"
+    mc:Ignorable="d">
+
+
     <ContentPage.Content>
 
         <StackLayout Padding="20,20,20,0">
-            <StackLayout Orientation="Horizontal" BackgroundColor="{StaticResource CardBackGroundColor}"
-                         Padding="15,12">
-                <Label Text="&#xf053;" FontFamily="{StaticResource FontAwesomeSolid}"
-                       FontSize="21"
-                       VerticalOptions="Center"
-                       TextColor="{StaticResource TextLabelColor}"/>
-                <Label Text="Developer"
-                       FontSize="20"
-                       VerticalOptions="Center"
-                       Margin="0"
-                       TextColor="{StaticResource TextLabelColor}"/>
+            <StackLayout
+                Padding="15,12"
+                BackgroundColor="{StaticResource CardBackGroundColor}"
+                Orientation="Horizontal">
+                <Label
+                    FontFamily="{StaticResource FontAwesomeSolid}"
+                    FontSize="21"
+                    Text="&#xf053;"
+                    TextColor="{StaticResource TextLabelColor}"
+                    VerticalOptions="Center" />
+                <Label
+                    Margin="0"
+                    FontSize="20"
+                    Text="Developer"
+                    TextColor="{StaticResource TextLabelColor}"
+                    VerticalOptions="Center" />
             </StackLayout>
-            <Label Text="{Binding JobsList.TotalItemCount, StringFormat='{0} Empleos Disponibles'}"
-                   FontSize="Title"
-                   TextColor="{StaticResource TextLabelColor}"
-                   FontAttributes="Bold"
-                   HorizontalOptions="StartAndExpand"
-                   Margin="0,10"/>
-            <ListView ItemsSource="{Binding JobsList.Jobs}" VerticalOptions="StartAndExpand"
-                      SeparatorVisibility="None"  CachingStrategy="RecycleElement"
-                      SelectionMode="None" BackgroundColor="{StaticResource BackGroundColor}"
-                      HasUnevenRows="True">
+            <Label
+                Margin="0,10"
+                FontAttributes="Bold"
+                FontSize="Title"
+                HorizontalOptions="StartAndExpand"
+                Text="{Binding JobsList.TotalItemCount, StringFormat='{0} Empleos Disponibles'}"
+                TextColor="{StaticResource TextLabelColor}" />
+            <ListView
+                BackgroundColor="{StaticResource BackGroundColor}"
+                CachingStrategy="RecycleElement"
+                HasUnevenRows="True"
+                ItemsSource="{Binding JobsList.Jobs}"
+                SelectionMode="None"
+                SeparatorVisibility="None"
+                VerticalOptions="StartAndExpand">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
-                            <Frame CornerRadius="4" BackgroundColor="{StaticResource CardBackGroundColor}" Margin="5,0,0,5"
-                                   Padding="10,10"
-                                   HasShadow="False" >
-                                
-                                <Grid HorizontalOptions="FillAndExpand" BackgroundColor="{StaticResource CardBackGroundColor}">
+                            <Frame
+                                Margin="5,0,0,5"
+                                Padding="10,10"
+                                BackgroundColor="{StaticResource CardBackGroundColor}"
+                                CornerRadius="4"
+                                HasShadow="False">
+
+                                <Grid BackgroundColor="{StaticResource CardBackGroundColor}" HorizontalOptions="FillAndExpand">
                                     <Grid.GestureRecognizers>
-                                        <TapGestureRecognizer NumberOfTapsRequired="1" Command="{Binding Source={x:Reference Name=JobListView},Path=BindingContext.CallDetailScreenCommand}" CommandParameter="{Binding Link}"/>
+                                        <TapGestureRecognizer
+                                            Command="{Binding Source={x:Reference Name=JobListView}, Path=BindingContext.CallDetailScreenCommand}"
+                                            CommandParameter="{Binding Link}"
+                                            NumberOfTapsRequired="1" />
                                     </Grid.GestureRecognizers>
                                     <Grid.RowDefinitions>
-                                        <RowDefinition Height="Auto"/>
-                                        <RowDefinition Height="Auto"/>
-                                        <RowDefinition Height="Auto"/>
-                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
                                     </Grid.RowDefinitions>
                                     <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="*"/>
-                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="Auto" />
                                     </Grid.ColumnDefinitions>
 
-                                    <Label Grid.Row="0"
-                                       Grid.Column="0"
-                                       Text="{Binding Title}"  
-                                       FontSize="Medium"
-                                           HorizontalOptions="Start"
-                                           TextColor="{StaticResource TextLabelColor}"
-                                           Padding="0"
-                                           Margin="0" LineBreakMode="NoWrap"/>
+                                    <Label
+                                        Grid.Row="0"
+                                        Grid.Column="0"
+                                        Margin="0"
+                                        Padding="0"
+                                        FontSize="Medium"
+                                        HorizontalOptions="Start"
+                                        LineBreakMode="NoWrap"
+                                        Text="{Binding Title}"
+                                        TextColor="{StaticResource TextLabelColor}" />
 
-                                    <Frame Grid.Row="0" Grid.Column="1" Grid.RowSpan="2"
-                                           BorderColor="White"
-                                           CornerRadius="0"
-                                           HeightRequest="20"
-                                           WidthRequest="20"
-                                           IsClippedToBounds="True"
-                                           HorizontalOptions="Center"
-                                           VerticalOptions="Center"
-                                           HasShadow="False">
-                                        <Image Source="{Binding CompanyLogoUrl}"
-                                                 Aspect="AspectFill"
-                                                 Margin="-20"
-                                                 HeightRequest="60"
-                                                 WidthRequest="60" />
+                                    <Frame
+                                        Grid.Row="0"
+                                        Grid.RowSpan="2"
+                                        Grid.Column="1"
+                                        BorderColor="White"
+                                        CornerRadius="0"
+                                        HasShadow="False"
+                                        HeightRequest="20"
+                                        HorizontalOptions="Center"
+                                        IsClippedToBounds="True"
+                                        VerticalOptions="Center"
+                                        WidthRequest="20">
+                                        <Image
+                                            Margin="-20"
+                                            Aspect="AspectFill"
+                                            HeightRequest="60"
+                                            Source="{Binding CompanyLogoUrl}"
+                                            WidthRequest="60" />
 
                                     </Frame>
 
-                                    <StackLayout Grid.Row="1"
-                                                Grid.Column="0"
-                                                Orientation="Horizontal"
-                                                 Padding="0"
-                                                 Spacing="0">
-                                        <Frame CornerRadius="2" BackgroundColor="{StaticResource BGRemoteLabel}" IsVisible="{Binding IsRemote}"
-                                               Padding="4,2"
-                                               Margin="0,0,5,0"
-                                               HasShadow="False"
-                                               HorizontalOptions="Start">
-                                            <Label Text="Remoto" 
-                                                   TextColor="White"
-                                                   FontSize="Micro"
-                                                   Padding="0"
-                                               Margin="0"/>
+                                    <StackLayout
+                                        Grid.Row="1"
+                                        Grid.Column="0"
+                                        Padding="0"
+                                        Orientation="Horizontal"
+                                        Spacing="0">
+                                        <Frame
+                                            Margin="0,0,5,0"
+                                            Padding="4,2"
+                                            BackgroundColor="{StaticResource BGRemoteLabel}"
+                                            CornerRadius="2"
+                                            HasShadow="False"
+                                            HorizontalOptions="Start"
+                                            IsVisible="{Binding IsRemote}">
+                                            <Label
+                                                Margin="0"
+                                                Padding="0"
+                                                FontSize="Micro"
+                                                Text="Remoto"
+                                                TextColor="White" />
                                         </Frame>
 
-                                        <Label Text="{Binding CompanyName}" 
-                                               FontSize="Small"
-                                               TextColor="{StaticResource TextLabelColor}"
-                                               Padding="0"
-                                               Margin="0"/>
+                                        <Label
+                                            Margin="0"
+                                            Padding="0"
+                                            FontSize="Small"
+                                            Text="{Binding CompanyName}"
+                                            TextColor="{StaticResource TextLabelColor}" />
                                     </StackLayout>
 
 
-                                    <Grid Grid.Row="2"
-                                                 Grid.Column="0"
-                                                 Grid.ColumnSpan="2" HorizontalOptions="FillAndExpand" RowSpacing="0" Padding="0">
+                                    <Grid
+                                        Grid.Row="2"
+                                        Grid.Column="0"
+                                        Grid.ColumnSpan="2"
+                                        Padding="0"
+                                        HorizontalOptions="FillAndExpand"
+                                        RowSpacing="0">
                                         <Grid.RowDefinitions>
-                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="Auto" />
                                         </Grid.RowDefinitions>
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition Width="Auto" />
@@ -124,36 +156,54 @@
                                             <ColumnDefinition Width="*" />
                                         </Grid.ColumnDefinitions>
 
-                                        <Label Grid.Row="0" Grid.Column="0" 
-                                                   Text="&#xf3c5;"
-                                                   FontFamily="{StaticResource FontAwesomeSolid}"
-                                                   Margin="0"
-                                                   Padding="0" VerticalOptions="Center"
-                                                    TextColor="{StaticResource InactiveColor}"/>
-                                        <Label Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2"
-                                                   Text="{Binding Location}"
-                                               FontSize="Small"
-                                                   Margin="0"
-                                                   Padding="0" VerticalOptions="Center"
-                                               LineBreakMode="NoWrap" TextColor="{StaticResource LocationLabelColor}"/>
+                                        <Label
+                                            Grid.Row="0"
+                                            Grid.Column="0"
+                                            Margin="0"
+                                            Padding="0"
+                                            FontFamily="{StaticResource FontAwesomeSolid}"
+                                            Text="&#xf3c5;"
+                                            TextColor="{StaticResource InactiveColor}"
+                                            VerticalOptions="Center" />
+                                        <Label
+                                            Grid.Row="0"
+                                            Grid.Column="1"
+                                            Grid.ColumnSpan="2"
+                                            Margin="0"
+                                            Padding="0"
+                                            FontSize="Small"
+                                            LineBreakMode="NoWrap"
+                                            Text="{Binding Location}"
+                                            TextColor="{StaticResource LocationLabelColor}"
+                                            VerticalOptions="Center" />
 
-                                        
+
                                     </Grid>
-                                    
-                                        <Frame Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" CornerRadius="2" BackgroundColor="{StaticResource TWebDeveloper}"
-                                               Padding="4,2"
-                                               HorizontalOptions="End"
-                                               HasShadow="False"
-                                               Margin="0"
-                                               >
-                                            <Label Text="Desarrollador Web" FontSize="Micro" HorizontalOptions="End"  VerticalOptions="End" Margin="0" TextColor="White"/>
-                                        </Frame>
+
+                                    <Frame
+                                        Grid.Row="3"
+                                        Grid.Column="0"
+                                        Grid.ColumnSpan="2"
+                                        Margin="0"
+                                        Padding="4,2"
+                                        BackgroundColor="{StaticResource TWebDeveloper}"
+                                        CornerRadius="2"
+                                        HasShadow="False"
+                                        HorizontalOptions="End">
+                                        <Label
+                                            Margin="0"
+                                            FontSize="Micro"
+                                            HorizontalOptions="End"
+                                            Text="Desarrollador Web"
+                                            TextColor="White"
+                                            VerticalOptions="End" />
+                                    </Frame>
                                 </Grid>
                             </Frame>
                         </ViewCell>
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
-         </StackLayout>
+        </StackLayout>
     </ContentPage.Content>
 </ContentPage>

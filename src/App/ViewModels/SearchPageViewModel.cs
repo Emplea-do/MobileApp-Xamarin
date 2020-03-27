@@ -29,17 +29,17 @@ namespace App.ViewModels
                 ParametersSearch parameters = new ParametersSearch
                 {
                     EntryKeyWord = enKeywords.ToString(),
-                    IsRemote = isRemote.ToString(),
-                    Category = ""
+                    //Category = ""
+                    IsRemote = isRemote.ToString()
+                    
                 };
-                string jason = await Task.Run(() => JsonConvert.SerializeObject(parameters));
+                string jason = await Task.Run(() =>  JsonConvert.SerializeObject(parameters));
                 
                 await Shell.Current.GoToAsync($"//listJobs?parameters={jason}");
              });
         }
 
         public ICommand BtnSearch { get; }
-
 
         public bool IsVisible
         {

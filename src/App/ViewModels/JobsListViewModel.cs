@@ -20,7 +20,7 @@ namespace App.ViewModels
     {
 
 
-        //public AppConstant ServiceConstant = new AppConstant();
+        //public ParametersSearch ParametersSearch { get; set; }
         public JobListModel JobsList { get; set; }
         public Command CallDetailScreenCommand { get; set; }
         public INavigation Navigation { get; set; }
@@ -30,49 +30,51 @@ namespace App.ViewModels
         {
             set
             {
-                        
                 var vm = Task.Run(() => JsonConvert.DeserializeObject<ParametersSearch>(Uri.UnescapeDataString(value))).Result;
 
-                var parametersSearch = new ParametersSearch
-                {
-                    EntryKeyWord = vm.EntryKeyWord,
-                    Category = vm.Category,
-                    IsRemote = vm.IsRemote
-                };
+                new Action(async () => await LoadSearchDataAsync(vm.EntryKeyWord, vm.IsRemote))();
             }
-
+            
         }
-        public async Task LoadDataAsync()
-        {
-
+        public async Task LoadInitialDataAsync()
+        {   
             var Cards = await AppConstant.ApiUrl
-                .AppendPathSegment(AppConstant.ApiEndPoint)
-                .SetQueryParams(new { pagesize = AppConstant.PageSize, page = 1 })
+                .AppendPathSegment(AppConstant.ApiEndPointSearch)
+                .SetQueryParams(new {pagesize = AppConstant.PageSize, page = 1 })
                 .WithHeader("Ocp-Apim-Subscription-Key", AppConstant.AppSecrets)
                 .GetJsonAsync<JobListModel>();
             JobsList = Cards;
 
         }
+        public async Task LoadSearchDataAsync(string enterkeyboard, string isRemote)
+        {
+            var Cards = await AppConstant.ApiUrl
+                .AppendPathSegment(AppConstant.ApiEndPointSearch)
+                .SetQueryParams(new
+                {
+                    keyword = enterkeyboard,
+                    Isremote = isRemote,
+                    //category = parametersSearch.Category,
+                    pagesize = AppConstant.PageSize,
+                    page = 1
+                })
+                .WithHeader("Ocp-Apim-Subscription-Key", AppConstant.AppSecrets)
+                .GetJsonAsync<JobListModel>();
+            JobsList = Cards;
 
-
+        }
         public JobsListViewModel(INavigation navshell)
         {
             this.Navigation = navshell;
             CallDetailScreenCommand = new Command<string>(async (string Link) => await OpenDetailViewAsync(Link));
-            new Action(async () => await LoadDataAsync())();
-
-
+                   
+            new Action(async () => await LoadInitialDataAsync())();
         }
 
         public async Task OpenDetailViewAsync(string link)
         {
-
             await Navigation.PushAsync(new JobDetailView(link));
-
         }
-
-       
-   
 
         public event PropertyChangedEventHandler PropertyChanged;
 
