@@ -22,7 +22,7 @@
             <Tab.Icon>
                 <FontImageSource FontFamily="{StaticResource FontAwesomeRegular}" Glyph="&#xf022;"/>
             </Tab.Icon>
-            <ShellContent>
+            <ShellContent  Route="listJobs">
                 <pages:JosbListView/>
             </ShellContent>
         </Tab>
