@@ -1,4 +1,5 @@
-﻿using App.Models;
+﻿using Acr.UserDialogs;
+using App.Models;
 using App.Services;
 using App.Views;
 using Flurl;
@@ -22,6 +23,7 @@ namespace App.ViewModels
 
         //public ParametersSearch ParametersSearch { get; set; }
         public JobListModel JobsList { get; set; }
+        public string Keyword { get; set; }
         public Command CallDetailScreenCommand { get; set; }
         public INavigation Navigation { get; set; }
 
@@ -36,18 +38,9 @@ namespace App.ViewModels
             }
             
         }
-        public async Task LoadInitialDataAsync()
-        {   
-            var Cards = await AppConstant.ApiUrl
-                .AppendPathSegment(AppConstant.ApiEndPointSearch)
-                .SetQueryParams(new {pagesize = AppConstant.PageSize, page = 1 })
-                .WithHeader("Ocp-Apim-Subscription-Key", AppConstant.AppSecrets)
-                .GetJsonAsync<JobListModel>();
-            JobsList = Cards;
-
-        }
         public async Task LoadSearchDataAsync(string enterkeyboard, string isRemote)
         {
+            UserDialogs.Instance.ShowLoading(title: "Loading");
             var Cards = await AppConstant.ApiUrl
                 .AppendPathSegment(AppConstant.ApiEndPointSearch)
                 .SetQueryParams(new
@@ -61,6 +54,8 @@ namespace App.ViewModels
                 .WithHeader("Ocp-Apim-Subscription-Key", AppConstant.AppSecrets)
                 .GetJsonAsync<JobListModel>();
             JobsList = Cards;
+            Keyword = enterkeyboard;
+            UserDialogs.Instance.HideLoading();
 
         }
         public JobsListViewModel(INavigation navshell)
@@ -68,7 +63,6 @@ namespace App.ViewModels
             this.Navigation = navshell;
             CallDetailScreenCommand = new Command<string>(async (string Link) => await OpenDetailViewAsync(Link));
                    
-            new Action(async () => await LoadInitialDataAsync())();
         }
 
         public async Task OpenDetailViewAsync(string link)

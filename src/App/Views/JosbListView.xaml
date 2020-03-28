@@ -21,16 +21,16 @@
                 Padding="15,12"
                 BackgroundColor="{StaticResource CardBackGroundColor}"
                 Orientation="Horizontal">
-                <Label
+                <!--<Label
                     FontFamily="{StaticResource FontAwesomeSolid}"
                     FontSize="21"
                     Text="&#xf053;"
                     TextColor="{StaticResource TextLabelColor}"
-                    VerticalOptions="Center" />
+                    VerticalOptions="Center" />-->
                 <Label
                     Margin="0"
                     FontSize="20"
-                    Text="Developer"
+                    Text="{Binding Keyword}"
                     TextColor="{StaticResource TextLabelColor}"
                     VerticalOptions="Center" />
             </StackLayout>

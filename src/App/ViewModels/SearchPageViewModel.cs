@@ -35,7 +35,7 @@ namespace App.ViewModels
                 };
                 string jason = await Task.Run(() =>  JsonConvert.SerializeObject(parameters));
                 
-                await Shell.Current.GoToAsync($"//listJobs?parameters={jason}");
+                await Shell.Current.GoToAsync($"/listJobs?parameters={jason}");
              });
         }
 
