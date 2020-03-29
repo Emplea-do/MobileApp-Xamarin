@@ -17,6 +17,7 @@ namespace App.Views
         {
             InitializeComponent();
             BindingContext = new JobsListViewModel(Navigation);
+
         }
     }
 }

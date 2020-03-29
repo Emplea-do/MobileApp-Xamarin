@@ -1,15 +1,15 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
-<Shell xmlns="http://xamarin.com/schemas/2014/forms"
-       xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-       xmlns:pages="clr-namespace:App.Views;assembly=App"
-       FlyoutBehavior="Locked"
-       x:Class="App.MainShell"
-       Shell.TabBarBackgroundColor="{StaticResource BackGroundColor}"
-       Shell.TabBarForegroundColor="{StaticResource ActiveColor}"
-       Shell.TabBarUnselectedColor="{StaticResource InactiveColor}"
-       Shell.TabBarTitleColor="{StaticResource ActiveColor}"
-       Shell.BackgroundColor="{StaticResource ActiveColor}"
-       >
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<Shell
+    x:Class="App.MainShell"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:pages="clr-namespace:App.Views;assembly=App"
+    FlyoutBehavior="Locked"
+    Shell.BackgroundColor="{StaticResource ActiveColor}"
+    Shell.TabBarBackgroundColor="{StaticResource BackGroundColor}"
+    Shell.TabBarForegroundColor="{StaticResource ActiveColor}"
+    Shell.TabBarTitleColor="{StaticResource ActiveColor}"
+    Shell.TabBarUnselectedColor="{StaticResource InactiveColor}">
 
     <!--<ShellItem>
         <ShellContent>
@@ -18,41 +18,40 @@
     </ShellItem>-->
 
     <TabBar>
-         <Tab Title="Lista" >
+        <!--<Tab Title="Lista" >
             <Tab.Icon>
                 <FontImageSource FontFamily="{StaticResource FontAwesomeRegular}" Glyph="&#xf022;"/>
             </Tab.Icon>
-            <ShellContent>
+            <ShellContent  Route="listJobs">
                 <pages:JosbListView/>
             </ShellContent>
-        </Tab>
-
-        <Tab Title="Ajustes" >
-            <Tab.Icon>
-                <FontImageSource FontFamily="{StaticResource FontAwesomeSolid}" Glyph="&#xf013;"/>
-            </Tab.Icon>
-            <ShellContent>
-                <pages:SettingsView/>
-            </ShellContent>
-        </Tab>
-       
-
-        <Tab Title="Buscar" >
-            <Tab.Icon>
-                <FontImageSource FontFamily="{StaticResource FontAwesomeSolid}" Glyph="&#xf002;"/>
-            </Tab.Icon>
-            <ShellContent>
-                <pages:SearchView/>
-            </ShellContent>
-        </Tab>
-        <!--<Tab Title="Perfil" >
-            <Tab.Icon>
-                <FontImageSource FontFamily="{StaticResource FontAwesomeRegular}" Glyph="&#xf007;"/>
-            </Tab.Icon>
-            <ShellContent>
-                <pages:ProfileView/>
-            </ShellContent>
         </Tab>-->
+        <Tab Title="Buscar">
+            <Tab.Icon>
+                <FontImageSource FontFamily="{StaticResource FontAwesomeSolid}" Glyph="&#xf002;" />
+            </Tab.Icon>
+            <ShellContent>
+                <pages:SearchView />
+            </ShellContent>
+        </Tab>
+
+        <Tab Title="Ajustes">
+            <Tab.Icon>
+                <FontImageSource FontFamily="{StaticResource FontAwesomeSolid}" Glyph="&#xf013;" />
+            </Tab.Icon>
+            <ShellContent>
+                <pages:SettingsView />
+            </ShellContent>
+        </Tab>
+
+        <Tab Title="Perfil">
+            <Tab.Icon>
+                <FontImageSource FontFamily="{StaticResource FontAwesomeRegular}" Glyph="&#xf007;" />
+            </Tab.Icon>
+            <ShellContent>
+                <pages:ProfileView />
+            </ShellContent>
+        </Tab>
     </TabBar>
 
 </Shell>

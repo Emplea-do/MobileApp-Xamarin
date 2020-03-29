@@ -12,7 +12,8 @@ namespace App.Services
     {
         public const string ApiUrl = "https://emplea-apm.azure-api.net/v1/api";
         public const string AppSecrets = "3f5b06a8cbd042a4b9963da0c41fb00e";
-        public const string ApiEndPoint = "jobs";
+        public const string ApiEndPointSearch = "jobs/search";
+        public const string ApiEndPointDetail = "jobs/detail/";
         public const int PageSize = 50;
 
 

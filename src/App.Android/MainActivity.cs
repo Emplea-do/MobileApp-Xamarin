@@ -8,7 +8,7 @@ using Android.OS;
 using App.Services;
 
 using Xamarin.Forms;
-
+using Acr.UserDialogs;
 
 namespace App.Droid
 {
@@ -26,6 +26,7 @@ namespace App.Droid
 
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
+            UserDialogs.Init(this);
             LoadApplication(new App());
             Window.SetStatusBarColor(Android.Graphics.Color.ParseColor(AppConstant.Background.ToHex()));
             

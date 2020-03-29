@@ -1,4 +1,5 @@
-﻿using System;
+﻿using App.Views;
+using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -12,6 +13,7 @@ namespace App
 
             // MainPage = new MainPage();
             MainPage = new MainShell();
+          
         }
 
         protected override void OnStart()

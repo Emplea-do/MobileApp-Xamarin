@@ -26,7 +26,7 @@ namespace App.ViewModels
         {
 
             var Data = await AppConstant.ApiUrl
-            .AppendPathSegment(AppConstant.ApiEndPoint+"/detail/"+link)
+            .AppendPathSegment(AppConstant.ApiEndPointDetail+link)
             .WithHeader("Ocp-Apim-Subscription-Key", AppConstant.AppSecrets)
             .GetJsonAsync<JobDetailModel>();
 
