@@ -14,7 +14,7 @@ namespace App
         {
             InitializeComponent();
 
-            Routing.RegisterRoute("listJobs", typeof(JosbListView));
+            Routing.RegisterRoute("listJobs", typeof(JobsListView));
         }
     }
 }

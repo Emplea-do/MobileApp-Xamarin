@@ -5,6 +5,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:androidWidget="clr-namespace:Android.Widget;assembly=Mono.Android;targetPlatform=Android"
     xmlns:ios="clr-namespace:UIKit;assembly=Xamarin.iOS;targetPlatform=iOS"
+    x:Name="Search"
     Title="Search"
     Shell.NavBarIsVisible="False">
     <ContentPage.Content>
@@ -46,6 +47,9 @@
                                         HorizontalTextAlignment="Center"
                                         Text="{Binding NameCard}" />
                                 </StackLayout>
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding Source={x:Reference Name=Search}, Path=BindingContext.CategorySearch}" CommandParameter="{Binding NameCard}" NumberOfTapsRequired="1"/>
+                                </Frame.GestureRecognizers>
                             </Frame>
                         </StackLayout>
                     </DataTemplate>

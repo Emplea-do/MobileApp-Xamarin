@@ -17,7 +17,8 @@ namespace App.ViewModels
         private bool visible;
         private string enKeywords;
         private bool isRemote;
-    
+        public ICommand CategorySearch { get; set; }
+
         public ObservableCollection<JobCards> JobCards { get; set; }
 
         public SearchPageViewModel()
@@ -37,6 +38,20 @@ namespace App.ViewModels
                 
                 await Shell.Current.GoToAsync($"/listJobs?parameters={jason}");
              });
+
+            CategorySearch = new Command<string>(async (string NameCard) =>
+            {
+                ParametersSearch parameters = new ParametersSearch
+                {
+                    EntryKeyWord = NameCard,
+                    //Category = ""
+                    IsRemote = isRemote.ToString()
+
+                };
+                string jason = await Task.Run(() => JsonConvert.SerializeObject(parameters));
+
+                await Shell.Current.GoToAsync($"/listJobs?parameters={jason}");
+            });
         }
 
         public ICommand BtnSearch { get; }

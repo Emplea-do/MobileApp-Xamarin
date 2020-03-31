@@ -1,20 +1,20 @@
-<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage
-    x:Class="App.Views.JosbListView"
-    xmlns="http://xamarin.com/schemas/2014/forms"
-    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:Local="clr-namespace:App.ViewModels"
-    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
-    xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:beh="clr-namespace:App.Behaviors"
-    x:Name="JobListView"
-    ios:Page.UseSafeArea="True"
-    BackgroundColor="{StaticResource BackGroundColor}"
-    Shell.NavBarIsVisible="False"
-    mc:Ignorable="d">
-
-
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage 
+        x:Class="App.Views.JobsListView"
+        xmlns="http://xamarin.com/schemas/2014/forms"
+        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+        xmlns:Local="clr-namespace:App.ViewModels"
+        xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+        xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:beh="clr-namespace:App.Behaviors"
+        x:Name="JobListView"
+        ios:Page.UseSafeArea="True"
+        BackgroundColor="{StaticResource BackGroundColor}"
+        Shell.NavBarIsVisible="False"
+        mc:Ignorable="d">
+    
+    
     <ContentPage.Content>
 
         <StackLayout Padding="20,20,20,0">
