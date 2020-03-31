@@ -47,8 +47,6 @@ namespace App.ViewModels
             set
             {
                 visible = value;
-                OnPropertyChanged();
-                OnPropertyChanged(nameof(Message));
             }
         }
         public bool IsEnable
@@ -57,8 +55,6 @@ namespace App.ViewModels
             set
             {
                 isEnable = value;
-                OnPropertyChanged();
-                OnPropertyChanged(nameof(Message));
             }
         }
         public string EnKeywords
@@ -69,7 +65,7 @@ namespace App.ViewModels
                 enKeywords = value;
                 if (enKeywords.Contains("=") || enKeywords.Contains("'") || enKeywords.Contains("?")
                     || enKeywords.Contains("/") || enKeywords.Contains("$") || enKeywords.Contains("#")
-                    || enKeywords.Contains("|") || enKeywords.Contains(" "))
+                    || enKeywords.Contains("|") /*|| enKeywords.Contains(" ")*/)
                 {
                     IsVisible = true;
                     IsEnable = false;
@@ -79,8 +75,6 @@ namespace App.ViewModels
                     IsVisible = false;
                     IsEnable = true;
                 }
-                OnPropertyChanged();
-                OnPropertyChanged(nameof(Message));
             }
         }
         public string Message
@@ -95,17 +89,13 @@ namespace App.ViewModels
             get { return isRemote; }
             set {
                 isRemote = value;
-                OnPropertyChanged();
             }
         }
 
 
 
         public event PropertyChangedEventHandler PropertyChanged;
-        void OnPropertyChanged([CallerMemberName] string name = "")
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
-        }
+        
 
 
 
