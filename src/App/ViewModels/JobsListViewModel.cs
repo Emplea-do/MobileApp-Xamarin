@@ -41,6 +41,8 @@ namespace App.ViewModels
                 var vm = Task.Run(() => JsonConvert.DeserializeObject<ParametersSearch>(Uri.UnescapeDataString(value))).Result;
                 Keyword = vm.EntryKeyWord;
                 LoadMore = new Command(async () => {
+                   
+                    //UserDialogs.Instance.ShowLoading(title: "Loading");
                     IsBusy = true;
                     try
                     {
@@ -54,6 +56,8 @@ namespace App.ViewModels
                     }
                     finally
                     {
+                        
+                        //UserDialogs.Instance.HideLoading();
                         IsBusy = false;
                     }
 
