@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Text;
 
 namespace App.Models
@@ -23,7 +24,7 @@ namespace App.Models
 
     public class JobListModel
     {
-        public List<Jobs> Jobs { get; set; }
+        public ObservableCollection<Jobs> Jobs { get; set; }
         public int PageSize { get; set; }
         public int PagesCount { get; set; }
         public int PageNumber { get; set; }

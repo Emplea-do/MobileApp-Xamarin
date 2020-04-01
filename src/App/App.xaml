@@ -40,8 +40,8 @@
 
                     <!--SearchView-->
                      <Color x:Key="SwitchColor">#13bac3</Color>
-                     <Color x:Key="ThumbColor">White</Color>
-                     <Color x:Key="TextColoButtonSearch">White</Color>
+                     <Color x:Key="ThumbColor">#F8F3F3</Color>
+                     <Color x:Key="TextColoButtonSearch">#F8F3F3</Color>
                      <Color x:Key="BackgroundColorButtonSearch">#13bac3</Color>
                     
 

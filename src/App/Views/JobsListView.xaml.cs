@@ -1,4 +1,4 @@
-using App.ViewModels;
+﻿using App.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,13 +11,12 @@ using Xamarin.Forms.Xaml;
 namespace App.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class JosbListView : ContentPage
+    public partial class JobsListView : ContentPage
     {
-        public JosbListView()
+        public JobsListView()
         {
             InitializeComponent();
             BindingContext = new JobsListViewModel(Navigation);
-
         }
     }
 }

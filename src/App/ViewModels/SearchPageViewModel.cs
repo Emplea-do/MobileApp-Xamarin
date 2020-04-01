@@ -17,7 +17,8 @@ namespace App.ViewModels
         private bool visible;
         private string enKeywords;
         private bool isRemote;
-    
+        public ICommand CategorySearch { get; set; }
+
         public ObservableCollection<JobCards> JobCards { get; set; }
 
         public SearchPageViewModel()
@@ -37,6 +38,20 @@ namespace App.ViewModels
                 
                 await Shell.Current.GoToAsync($"/listJobs?parameters={jason}");
              });
+
+            CategorySearch = new Command<string>(async (string NameCard) =>
+            {
+                ParametersSearch parameters = new ParametersSearch
+                {
+                    EntryKeyWord = NameCard,
+                    //Category = ""
+                    IsRemote = isRemote.ToString()
+
+                };
+                string jason = await Task.Run(() => JsonConvert.SerializeObject(parameters));
+
+                await Shell.Current.GoToAsync($"/listJobs?parameters={jason}");
+            });
         }
 
         public ICommand BtnSearch { get; }
@@ -47,8 +62,6 @@ namespace App.ViewModels
             set
             {
                 visible = value;
-                OnPropertyChanged();
-                OnPropertyChanged(nameof(Message));
             }
         }
         public bool IsEnable
@@ -57,8 +70,6 @@ namespace App.ViewModels
             set
             {
                 isEnable = value;
-                OnPropertyChanged();
-                OnPropertyChanged(nameof(Message));
             }
         }
         public string EnKeywords
@@ -69,7 +80,7 @@ namespace App.ViewModels
                 enKeywords = value;
                 if (enKeywords.Contains("=") || enKeywords.Contains("'") || enKeywords.Contains("?")
                     || enKeywords.Contains("/") || enKeywords.Contains("$") || enKeywords.Contains("#")
-                    || enKeywords.Contains("|") || enKeywords.Contains(" "))
+                    || enKeywords.Contains("|") /*|| enKeywords.Contains(" ")*/)
                 {
                     IsVisible = true;
                     IsEnable = false;
@@ -79,8 +90,6 @@ namespace App.ViewModels
                     IsVisible = false;
                     IsEnable = true;
                 }
-                OnPropertyChanged();
-                OnPropertyChanged(nameof(Message));
             }
         }
         public string Message
@@ -95,17 +104,13 @@ namespace App.ViewModels
             get { return isRemote; }
             set {
                 isRemote = value;
-                OnPropertyChanged();
             }
         }
 
 
 
         public event PropertyChangedEventHandler PropertyChanged;
-        void OnPropertyChanged([CallerMemberName] string name = "")
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
-        }
+        
 
 
 
