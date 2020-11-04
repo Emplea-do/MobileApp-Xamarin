@@ -51,7 +51,7 @@
                 HorizontalOptions="Start"
                 HorizontalScrollBarVisibility="Never"
                 ItemsSource="{Binding JobCards}"
-                NumberOfSideItems="1">
+                >
                 <CarouselView.ItemTemplate>
                     <DataTemplate>
                         <StackLayout>

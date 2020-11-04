@@ -1,41 +1,72 @@
 ﻿using Acr.UserDialogs;
+using App.ViewModels;
 using App.Views;
+using Prism;
+using Prism.Ioc;
 using System;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
+[assembly: XamlCompilation(XamlCompilationOptions.Compile)]
 namespace App
 {
-    public partial class App : Application
+    public partial class App 
     {
-        public App()
-        {
-            InitializeComponent();
+        public App() : this(null) { }
 
-            // MainPage = new MainPage();
-            MainPage = new MainShell();
-          
-        }
+        public App(IPlatformInitializer initializer) : base(initializer) { }
 
-        protected override void OnStart()
+        protected override async void OnInitialized()
         {
             // Handle when your app starts
             var current = Connectivity.NetworkAccess;
             if (current != NetworkAccess.Internet)
             {
-                UserDialogs.Instance.Alert("Network is Not Available, please check your Internet Connection");
+                await UserDialogs.Instance.AlertAsync("Network is Not Available, please check your Internet Connection");
+                System.Diagnostics.Process.GetCurrentProcess().CloseMainWindow();
             }
+            else {
+                InitializeComponent();
+
+                await NavigationService.NavigateAsync("NavigationPage/SearchView");
+            }
+            
         }
 
-        protected override void OnSleep()
+        protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {
-            // Handle when your app sleeps
+            containerRegistry.RegisterForNavigation<NavigationPage>();
+            containerRegistry.RegisterForNavigation<SearchView, SearchPageViewModel>();
         }
 
-        protected override void OnResume()
-        {
-            // Handle when your app resumes
-        }
+        //public App()
+        //{
+        //    InitializeComponent();
+
+        //    // MainPage = new MainPage();
+        //    MainPage = new MainShell();
+
+        //}
+
+        //protected override void OnStart()
+        //{
+        //    // Handle when your app starts
+        //    var current = Connectivity.NetworkAccess;
+        //    if (current != NetworkAccess.Internet)
+        //    {
+        //        UserDialogs.Instance.Alert("Network is Not Available, please check your Internet Connection");
+        //    }
+        //}
+
+        //protected override void OnSleep()
+        //{
+        //    // Handle when your app sleeps
+        //}
+
+        //protected override void OnResume()
+        //{
+        //    // Handle when your app resumes
+        //}
     }
 }
