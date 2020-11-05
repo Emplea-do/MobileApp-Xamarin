@@ -3,7 +3,6 @@ using App.ViewModels;
 using App.Views;
 using Prism;
 using Prism.Ioc;
-using System;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -38,6 +37,8 @@ namespace App
         {
             containerRegistry.RegisterForNavigation<NavigationPage>();
             containerRegistry.RegisterForNavigation<SearchView, SearchPageViewModel>();
+            containerRegistry.RegisterForNavigation<JobDetailView, JobDetailViewModel>();
+            containerRegistry.RegisterForNavigation<JobsListView, JobsListViewModel>();
         }
 
         //public App()

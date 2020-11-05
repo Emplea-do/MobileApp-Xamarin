@@ -10,7 +10,7 @@ namespace App.Views
         public JobDetailView(string link)
         {
             InitializeComponent();
-            BindingContext = new JobDetailViewModel(link);
+           // BindingContext = new JobDetailViewModel(link);
         }
     }
 }

@@ -5,6 +5,9 @@ using App.Views;
 using Flurl;
 using Flurl.Http;
 using Newtonsoft.Json;
+using Prism.Commands;
+using Prism.Navigation;
+using PropertyChanged;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -18,20 +21,19 @@ using Xamarin.Forms;
 
 namespace App.ViewModels
 {
-    [QueryProperty("Parameters", "parameters")]
-    public class JobsListViewModel : INotifyPropertyChanged
+    [AddINotifyPropertyChangedInterface]
+    public class JobsListViewModel : IInitialize
     {
-
 
         public JobListModel JobsList { get; set; }
         public string Keyword { get; set; }
         public string IsRemote { get; set; }
         public int Pagenumber;
         public bool IsBusy { get; set; }
-        public Command CallDetailScreenCommand { get; set; }
-        public INavigation Navigation { get; set; }
+        public DelegateCommand CallDetailScreenCommand { get; set; }
+        public INavigationService Navigation { get; set; }
         public ICommand LoadMore { get; set; }
-        public Command BackButton { get; set; }
+        public DelegateCommand BackButton { get; set; }
 
 
         public string Parameters
@@ -40,7 +42,7 @@ namespace App.ViewModels
             {
                 var vm = Task.Run(() => JsonConvert.DeserializeObject<ParametersSearch>(Uri.UnescapeDataString(value))).Result;
                 Keyword = vm.EntryKeyWord;
-                LoadMore = new Command(async () => {
+                LoadMore = new DelegateCommand(async () => {
                    
                     //UserDialogs.Instance.ShowLoading(title: "Loading");
                     IsBusy = true;
@@ -88,32 +90,62 @@ namespace App.ViewModels
             }
             else
             {
-
+                JobsList = new JobListModel();
+                JobsList.Jobs = new ObservableCollection<Jobs>();
                 foreach (var NJobs in Cards.Jobs)
                 {
                     JobsList.Jobs.Add(NJobs);
                 }
+
+                JobsList.Jobs = new ObservableCollection<Jobs>(JobsList.Jobs);
             }
 
         }
-        public JobsListViewModel(INavigation navshell)
+        public JobsListViewModel(INavigationService navigationService)
         {
-            this.Navigation = navshell;
-            CallDetailScreenCommand = new Command<string>(async (string Link) => await OpenDetailViewAsync(Link));
-            BackButton = new Command(async () =>
-            {
+            Navigation = navigationService;
+            //this.Navigation = navshell;
+            //CallDetailScreenCommand = new DelegateCommand<string>(async (string Link) => await OpenDetailViewAsync(Link));
+            //CallDetailScreenCommand = new DelegateCommand<string>((OpenDetailViewAsync) =>  );
+            //BackButton = new DelegateCommand(async () =>
+            //{
 
-                await Navigation.PopAsync();
+            //    await Navigation.PopAsync();
 
-            });
+            //});
+        }
+
+        public DelegateCommand<object> JobListView => new DelegateCommand<object>(CargarListView);
+        void CargarListView(object param)
+        {
+
         }
 
         public async Task OpenDetailViewAsync(string link)
         {
-            await Navigation.PushAsync(new JobDetailView(link));
+            NavigationParameters Params = new NavigationParameters();
+            Params.Add("Link", link);
+
+            await Navigation.NavigateAsync("JobDetailView", Params);
+            //PushAsync(new JobDetailView(link));
         }
 
-        public event PropertyChangedEventHandler PropertyChanged;
+        private async void LoadData(ParametersSearch Parametros)
+        {
+            await LoadSearchDataAsync(Parametros.EntryKeyWord, Parametros.IsRemote, 0);
+        }
+
+        public void Initialize(INavigationParameters parameters)
+        {
+            if (parameters.ContainsKey("ListJobs"))
+            {
+                var ListJobs = parameters["ListJobs"] as ParametersSearch;
+
+                LoadData(ListJobs);
+            }   
+
+            
+        }
 
     }
    

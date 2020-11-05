@@ -11,7 +11,6 @@
         x:Name="JobListView"
         ios:Page.UseSafeArea="True"
         BackgroundColor="{StaticResource BackGroundColor}"
-        Shell.NavBarIsVisible="False"
         mc:Ignorable="d">
     
     
