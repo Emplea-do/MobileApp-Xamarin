@@ -6,6 +6,7 @@ using Flurl;
 using Flurl.Http;
 using Newtonsoft.Json;
 using Prism.Commands;
+using Prism.Mvvm;
 using Prism.Navigation;
 using PropertyChanged;
 using System;
@@ -26,49 +27,19 @@ namespace App.ViewModels
     {
 
         public JobListModel JobsList { get; set; }
-        public string Keyword { get; set; }
+        public string Keyword { get;set; }
+
         public string IsRemote { get; set; }
-        public int Pagenumber;
+
+        public int Pagenumber { get; set; }
+
+        public bool _isBusy;
         public bool IsBusy { get; set; }
         public DelegateCommand CallDetailScreenCommand { get; set; }
         public INavigationService Navigation { get; set; }
         public ICommand LoadMore { get; set; }
         public DelegateCommand BackButton { get; set; }
 
-
-        public string Parameters
-        {
-            set
-            {
-                var vm = Task.Run(() => JsonConvert.DeserializeObject<ParametersSearch>(Uri.UnescapeDataString(value))).Result;
-                Keyword = vm.EntryKeyWord;
-                LoadMore = new DelegateCommand(async () => {
-                   
-                    //UserDialogs.Instance.ShowLoading(title: "Loading");
-                    IsBusy = true;
-                    try
-                    {
-
-                        Pagenumber++;
-                        await LoadSearchDataAsync(vm.EntryKeyWord, vm.IsRemote, Pagenumber);
-                    }
-                    catch (Exception ex)
-                    {
-                        Debug.WriteLine(ex.Message);
-                    }
-                    finally
-                    {
-                        
-                        //UserDialogs.Instance.HideLoading();
-                        IsBusy = false;
-                    }
-
-                });
-
-                LoadMore.Execute(null);
-            }
-
-        }
         public async Task LoadSearchDataAsync(string enterkeyboard, string isRemote, int PageNumber)
         {
             var Cards = await AppConstant.ApiUrl
@@ -90,29 +61,47 @@ namespace App.ViewModels
             }
             else
             {
-                JobsList = new JobListModel();
-                JobsList.Jobs = new ObservableCollection<Jobs>();
-                foreach (var NJobs in Cards.Jobs)
-                {
-                    JobsList.Jobs.Add(NJobs);
-                }
+                if (Cards.Jobs != null) {
+                    foreach (var NJobs in Cards.Jobs)
+                    {
+                        JobsList.Jobs.Add(NJobs);
+                    }
 
-                JobsList.Jobs = new ObservableCollection<Jobs>(JobsList.Jobs);
+                    JobsList.Jobs = new ObservableCollection<Jobs>(JobsList.Jobs);
+                }
+                
             }
 
+            
         }
         public JobsListViewModel(INavigationService navigationService)
         {
             Navigation = navigationService;
-            //this.Navigation = navshell;
-            //CallDetailScreenCommand = new DelegateCommand<string>(async (string Link) => await OpenDetailViewAsync(Link));
-            //CallDetailScreenCommand = new DelegateCommand<string>((OpenDetailViewAsync) =>  );
-            //BackButton = new DelegateCommand(async () =>
-            //{
 
-            //    await Navigation.PopAsync();
+            LoadMore = new DelegateCommand(async () => {
 
-            //});
+                //UserDialogs.Instance.ShowLoading(title: "Loading");
+                IsBusy = true;
+                try
+                {
+
+                    Pagenumber++;
+                    await LoadSearchDataAsync(Keyword, IsRemote, Pagenumber);
+                }
+                catch (Exception ex)
+                {
+                    Debug.WriteLine(ex.Message);
+                }
+                finally
+                {
+
+                    //UserDialogs.Instance.HideLoading();
+                    IsBusy = false;
+                }
+
+            });
+
+
         }
 
         public DelegateCommand<object> JobListView => new DelegateCommand<object>(CargarListView);
@@ -127,12 +116,6 @@ namespace App.ViewModels
             Params.Add("Link", link);
 
             await Navigation.NavigateAsync("JobDetailView", Params);
-            //PushAsync(new JobDetailView(link));
-        }
-
-        private async void LoadData(ParametersSearch Parametros)
-        {
-            await LoadSearchDataAsync(Parametros.EntryKeyWord, Parametros.IsRemote, 0);
         }
 
         public void Initialize(INavigationParameters parameters)
@@ -140,11 +123,15 @@ namespace App.ViewModels
             if (parameters.ContainsKey("ListJobs"))
             {
                 var ListJobs = parameters["ListJobs"] as ParametersSearch;
+                Keyword = ListJobs.EntryKeyWord;
+                IsRemote = ListJobs.IsRemote;
+                Pagenumber = 0;
 
-                LoadData(ListJobs);
-            }   
+                LoadMore.Execute(null);
 
-            
+            }
+
+           
         }
 
     }
