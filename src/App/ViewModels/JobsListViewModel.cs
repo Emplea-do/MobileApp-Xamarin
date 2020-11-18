@@ -35,48 +35,37 @@ namespace App.ViewModels
 
         public bool _isBusy;
         public bool IsBusy { get; set; }
-        public DelegateCommand CallDetailScreenCommand { get; set; }
+        public DelegateCommand<string> CallDetailScreenCommand { get; set; }
         public INavigationService Navigation { get; set; }
         public ICommand LoadMore { get; set; }
         public DelegateCommand BackButton { get; set; }
 
-        public async Task LoadSearchDataAsync(string enterkeyboard, string isRemote, int PageNumber)
-        {
-            var Cards = await AppConstant.ApiUrl
-                .AppendPathSegment(AppConstant.ApiEndPointSearch)
-                .SetQueryParams(new
-                {
-                    keyword = enterkeyboard,
-                    Isremote = isRemote,
-                    pagesize = AppConstant.PageSize,
-                    page = PageNumber
-                })
-                .WithHeader("Ocp-Apim-Subscription-Key", AppConstant.AppSecrets)
-                .GetJsonAsync<JobListModel>();
-
-            if (PageNumber == 1)
-            {
-                JobsList = Cards;
-                Keyword = enterkeyboard;
-            }
-            else
-            {
-                if (Cards.Jobs != null) {
-                    foreach (var NJobs in Cards.Jobs)
-                    {
-                        JobsList.Jobs.Add(NJobs);
-                    }
-
-                    JobsList.Jobs = new ObservableCollection<Jobs>(JobsList.Jobs);
-                }
-                
-            }
-
-            
-        }
+        
         public JobsListViewModel(INavigationService navigationService)
         {
             Navigation = navigationService;
+
+            RegisterCommands();
+
+        }
+
+        public void Initialize(INavigationParameters parameters)
+        {
+            if (parameters.ContainsKey("ListJobs"))
+            {
+                var ListJobs = parameters["ListJobs"] as ParametersSearch;
+                Keyword = ListJobs.EntryKeyWord;
+                IsRemote = ListJobs.IsRemote;
+                Pagenumber = 0;
+
+                LoadMore.Execute(null);
+
+            }
+
+
+        }
+
+        public void RegisterCommands() {
 
             LoadMore = new DelegateCommand(async () => {
 
@@ -101,38 +90,58 @@ namespace App.ViewModels
 
             });
 
+            CallDetailScreenCommand = new DelegateCommand<string>(async (jobId) => await OpenDetailViewAsync(jobId));
 
         }
 
-        public DelegateCommand<object> JobListView => new DelegateCommand<object>(CargarListView);
-        void CargarListView(object param)
+
+        public async Task LoadSearchDataAsync(string enterkeyboard, string isRemote, int PageNumber)
         {
+            var Cards = await AppConstant.ApiUrl
+                .AppendPathSegment(AppConstant.ApiEndPointSearch)
+                .SetQueryParams(new
+                {
+                    keyword = enterkeyboard,
+                    Isremote = isRemote,
+                    pagesize = AppConstant.PageSize,
+                    page = PageNumber
+                })
+                .WithHeader("Ocp-Apim-Subscription-Key", AppConstant.AppSecrets)
+                .GetJsonAsync<JobListModel>();
+
+            if (PageNumber == 1)
+            {
+                JobsList = Cards;
+                Keyword = enterkeyboard;
+            }
+            else
+            {
+                if (Cards.Jobs != null)
+                {
+                    foreach (var NJobs in Cards.Jobs)
+                    {
+                        JobsList.Jobs.Add(NJobs);
+                    }
+
+                    JobsList.Jobs = new ObservableCollection<Jobs>(JobsList.Jobs);
+                }
+
+            }
+
 
         }
 
-        public async Task OpenDetailViewAsync(string link)
+        public async Task OpenDetailViewAsync(string jobId)
         {
-            NavigationParameters Params = new NavigationParameters();
-            Params.Add("Link", link);
+            var Params = new NavigationParameters
+                {
+                    { "JobId",  jobId}
+                };
 
             await Navigation.NavigateAsync("JobDetailView", Params);
         }
 
-        public void Initialize(INavigationParameters parameters)
-        {
-            if (parameters.ContainsKey("ListJobs"))
-            {
-                var ListJobs = parameters["ListJobs"] as ParametersSearch;
-                Keyword = ListJobs.EntryKeyWord;
-                IsRemote = ListJobs.IsRemote;
-                Pagenumber = 0;
-
-                LoadMore.Execute(null);
-
-            }
-
-           
-        }
+        
 
     }
    

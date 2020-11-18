@@ -9,29 +9,31 @@ using Flurl.Http;
 using Xamarin.Forms;
 using Prism.Commands;
 using Prism.Navigation;
+using PropertyChanged;
 
 namespace App.ViewModels
 {
-    public class JobDetailViewModel : INotifyPropertyChanged, IInitialize, INavigationAware
+    [AddINotifyPropertyChangedInterface]
+    public class JobDetailViewModel : IInitialize, INavigationAware
     {
         public JobDetailModel JobsDetail { get; set; }
         public DelegateCommand OpenJobWebURLCommand { get; set; }
 
-        public JobDetailViewModel(string Link)
+        public JobDetailViewModel()
         {
 
-            new Action(async () => await LoadDataAsync(Link))();
+            
 
            // this.OpenJobWebURLCommand = new DelegateCommand<string>(OpenJobWebURL);
  
            // OpenJobWebURLCommand=    DelegateCommand(Action OpenJobWebURLCommand, Func<bool> OpenJobWebURL);
             //OpenJobWebURLCommand = new Command<string>(OpenJobWebURL);
         }
-        public async Task LoadDataAsync(string link)
+        public async Task LoadDataAsync(string jobId)
         {
 
             var Data = await AppConstant.ApiUrl
-            .AppendPathSegment(AppConstant.ApiEndPointDetail+link)
+            .AppendPathSegment(AppConstant.ApiEndPointDetail+ jobId)
             .WithHeader("Ocp-Apim-Subscription-Key", AppConstant.AppSecrets)
             .GetJsonAsync<JobDetailModel>();
 
@@ -49,10 +51,12 @@ namespace App.ViewModels
 
         public void Initialize(INavigationParameters parameters)
         {
-            if (parameters.ContainsKey("Link"))
+            if (parameters.ContainsKey("JobId"))
             {
-                var Link = parameters["Link"] as string;
+                var jobId = parameters["JobId"] as string;
+                new Action(async () => await LoadDataAsync(jobId))();
             }
+
         }
 
         public void OnNavigatedFrom(INavigationParameters parameters)
@@ -65,6 +69,6 @@ namespace App.ViewModels
             throw new NotImplementedException();
         }
 
-        public event PropertyChangedEventHandler PropertyChanged;
+        //public event PropertyChangedEventHandler PropertyChanged;
     }
 }
