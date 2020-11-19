@@ -10,6 +10,12 @@ namespace App.Models
     {
         public string Link { get; set; }
         public string CompanyName { get; set; }
+        public string CompanyNameTrim {
+            get
+            {
+                return CompanyName.Trim();
+            }
+        }
         public string Title { get; set; }
         public string JobType { get; set; }
         public string Location { get; set; }

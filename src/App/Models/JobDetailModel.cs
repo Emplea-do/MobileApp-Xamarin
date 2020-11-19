@@ -17,9 +17,7 @@ namespace App.Models
         public string JobDescriptionHtml {
             get
             {
-                string textHtml = "<html lang='es'><head><meta charset='UTF-8'/><style>body{font-family: 'Arial'; font-size: 18px; color: #9eabba;}</style></head><body>";
-                textHtml = textHtml + JobDescription + "</body></html>";
-                return textHtml;
+                return $"<html lang='es'><head><meta charset='UTF-8'/><style></style></head><body>{JobDescription} </body></html>";
             }
         }
         public string JobType { get; set; }
@@ -31,9 +29,7 @@ namespace App.Models
         {
             get
             {
-                string textHtml = "<html><head><style>body{font-family: 'Arial'; font-size: 18px; color: #9eabba;}</style></head><body>";
-                textHtml = textHtml + HowToApply + "</body></html>";
-                return textHtml;
+                return $"<html><head><style></style></head><body> {HowToApply} </body></html>";
             }
         }
         public Company Company { get; set; }
