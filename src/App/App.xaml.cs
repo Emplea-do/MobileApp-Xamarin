@@ -1,11 +1,11 @@
 ﻿using Acr.UserDialogs;
 using App.ViewModels;
 using App.Views;
-using Prism;
-using Prism.Ioc;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using Prism;
+using Prism.Ioc;
 
 [assembly: XamlCompilation(XamlCompilationOptions.Compile)]
 namespace App
@@ -41,33 +41,6 @@ namespace App
             containerRegistry.RegisterForNavigation<JobsListView, JobsListViewModel>();
         }
 
-        //public App()
-        //{
-        //    InitializeComponent();
-
-        //    // MainPage = new MainPage();
-        //    MainPage = new MainShell();
-
-        //}
-
-        //protected override void OnStart()
-        //{
-        //    // Handle when your app starts
-        //    var current = Connectivity.NetworkAccess;
-        //    if (current != NetworkAccess.Internet)
-        //    {
-        //        UserDialogs.Instance.Alert("Network is Not Available, please check your Internet Connection");
-        //    }
-        //}
-
-        //protected override void OnSleep()
-        //{
-        //    // Handle when your app sleeps
-        //}
-
-        //protected override void OnResume()
-        //{
-        //    // Handle when your app resumes
-        //}
+       
     }
 }

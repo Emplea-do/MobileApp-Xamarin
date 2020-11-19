@@ -16,8 +16,6 @@ namespace App.Views
         {
            
             InitializeComponent();
-            //BindingContext = new SearchPageViewModel();
-
            
         }
 

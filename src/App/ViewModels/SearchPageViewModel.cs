@@ -61,9 +61,6 @@ namespace App.ViewModels
 
                 await NavigationService.NavigateAsync("JobsListView", new NavigationParameters { { "ListJobs", parameters } });
 
-                //string jason = await Task.Run(() => JsonConvert.SerializeObject(parameters));
-                //await NavigationService.NavigateAsync($"/listJobs?parameters={jason}");
-                //await Shell.Current.GoToAsync($"/listJobs?parameters={jason}");
             });
         }
 

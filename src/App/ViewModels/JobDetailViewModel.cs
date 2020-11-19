@@ -22,12 +22,6 @@ namespace App.ViewModels
         public JobDetailViewModel()
         {
 
-            
-
-           // this.OpenJobWebURLCommand = new DelegateCommand<string>(OpenJobWebURL);
- 
-           // OpenJobWebURLCommand=    DelegateCommand(Action OpenJobWebURLCommand, Func<bool> OpenJobWebURL);
-            //OpenJobWebURLCommand = new Command<string>(OpenJobWebURL);
         }
         public async Task LoadDataAsync(string jobId)
         {

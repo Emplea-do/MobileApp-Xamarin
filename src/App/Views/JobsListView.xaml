@@ -179,7 +179,7 @@
                                         <Label
                                             Grid.Row="0"
                                             Grid.Column="1"
-                                            Grid.ColumnSpan="0"
+                                            Grid.ColumnSpan="1"
                                             Margin="0"
                                             Padding="0"
                                             FontSize="Small"
@@ -190,7 +190,6 @@
                                         <Frame
                                             Grid.Row="0"
                                             Grid.Column="2"
-                                            Grid.ColumnSpan="0"
                                             Margin="0"
                                             Padding="2,2"
                                             BackgroundColor="{StaticResource TWebDeveloper}"
