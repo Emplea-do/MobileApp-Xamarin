@@ -1,16 +1,34 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<ContentPage
+<TabbedPage
     x:Class="App.Views.SearchView"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:androidWidget="clr-namespace:Android.Widget;assembly=Mono.Android;targetPlatform=Android"
     xmlns:ios="clr-namespace:UIKit;assembly=Xamarin.iOS;targetPlatform=iOS"
+    xmlns:local="clr-namespace:App.Views"
     x:Name="Search"
-    Title="Search"
-    Shell.NavBarIsVisible="False">
-    <ContentPage.Content>
-     <Grid>
-     <Grid.RowDefinitions>
+    Title="Search">
+    <TabbedPage.Children>
+        <NavigationPage Title="Text1" IconImageSource="software.png">
+            <x:Arguments>
+        <local:ProfileView/>
+            </x:Arguments>
+        </NavigationPage>
+        <NavigationPage Title="Text2" IconImageSource="software.png">
+            <x:Arguments>
+                <local:JobsListView/>
+            </x:Arguments>
+        </NavigationPage>
+        <NavigationPage Title="Text3" IconImageSource="software.png">
+            <x:Arguments>
+                <local:SettingsView/>
+        </x:Arguments>
+        </NavigationPage>
+
+    </TabbedPage.Children>
+    <ContentPage>
+     <Grid ColumnDefinitions="*,*" RowDefinitions="Auto,Auto,Auto,100,100,100">
+     <!--<Grid.RowDefinitions>
          <RowDefinition Height="Auto" /> 
          <RowDefinition Height="Auto" />
          <RowDefinition Height="Auto" />
@@ -22,7 +40,7 @@
      <Grid.ColumnDefinitions>
          <ColumnDefinition Width="*" />
          <ColumnDefinition  Width="*" />
-     </Grid.ColumnDefinitions>
+     </Grid.ColumnDefinitions>-->
 
      
             <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" 
@@ -51,7 +69,7 @@
                 HorizontalOptions="Start"
                 HorizontalScrollBarVisibility="Never"
                 ItemsSource="{Binding JobCards}"
-                NumberOfSideItems="1">
+                >
                 <CarouselView.ItemTemplate>
                     <DataTemplate>
                         <StackLayout>
@@ -102,5 +120,5 @@
                 VerticalOptions="CenterAndExpand"
                 WidthRequest="400" />
        </Grid>
-    </ContentPage.Content>
-</ContentPage>
+    </ContentPage>
+</TabbedPage>

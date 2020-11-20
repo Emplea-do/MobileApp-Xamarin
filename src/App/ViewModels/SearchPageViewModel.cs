@@ -1,16 +1,22 @@
 ﻿using App.Models;
 using App.Services;
 using Newtonsoft.Json;
+using Prism.Commands;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
+using Prism;
+using Prism.Ioc;
+using Prism.Navigation;
+using PropertyChanged;
 
 namespace App.ViewModels
 {
-    public class SearchPageViewModel: INotifyPropertyChanged
+    [AddINotifyPropertyChangedInterface]
+    public class SearchPageViewModel
     {
         private string message = "No se permiten caracteres especiales";
         private bool isEnable;
@@ -18,14 +24,18 @@ namespace App.ViewModels
         private string enKeywords;
         private bool isRemote;
         public ICommand CategorySearch { get; set; }
+        public ICommand BtnSearch { get; }
 
+        public INavigationService NavigationService { get; set; }
         public ObservableCollection<JobCards> JobCards { get; set; }
 
-        public SearchPageViewModel()
+        public SearchPageViewModel(INavigationService navigationService)
         {
+            NavigationService = navigationService;
+
             JobCards = new ObservableCollection<JobCards>(new MockCardService().GetJobCards());
  
-            BtnSearch = new Command(async () =>
+            BtnSearch = new DelegateCommand(async () =>
             {
                 ParametersSearch parameters = new ParametersSearch
                 {
@@ -34,12 +44,12 @@ namespace App.ViewModels
                     IsRemote = isRemote.ToString()
                     
                 };
-                string jason = await Task.Run(() =>  JsonConvert.SerializeObject(parameters));
                 
-                await Shell.Current.GoToAsync($"/listJobs?parameters={jason}");
+                await NavigationService.NavigateAsync("JobsListView", new NavigationParameters { { "ListJobs", parameters } } );
+                //await Shell.Current.GoToAsync($"/listJobs?parameters={jason}");
              });
 
-            CategorySearch = new Command<string>(async (string NameCard) =>
+            CategorySearch = new DelegateCommand<string>(async (string NameCard) =>
             {
                 ParametersSearch parameters = new ParametersSearch
                 {
@@ -48,13 +58,13 @@ namespace App.ViewModels
                     IsRemote = isRemote.ToString()
 
                 };
-                string jason = await Task.Run(() => JsonConvert.SerializeObject(parameters));
 
-                await Shell.Current.GoToAsync($"/listJobs?parameters={jason}");
+                await NavigationService.NavigateAsync("JobsListView", new NavigationParameters { { "ListJobs", parameters } });
+
             });
         }
 
-        public ICommand BtnSearch { get; }
+        
 
         public bool IsVisible
         {
@@ -106,13 +116,6 @@ namespace App.ViewModels
                 isRemote = value;
             }
         }
-
-
-
-        public event PropertyChangedEventHandler PropertyChanged;
-        
-
-
 
     }
 }

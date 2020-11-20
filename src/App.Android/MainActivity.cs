@@ -9,6 +9,8 @@ using App.Services;
 
 using Xamarin.Forms;
 using Acr.UserDialogs;
+using Prism;
+using Prism.Ioc;
 
 namespace App.Droid
 {
@@ -27,7 +29,8 @@ namespace App.Droid
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
             UserDialogs.Init(this);
-            LoadApplication(new App());
+            //LoadApplication(new App());
+            LoadApplication(new App(new AndroidInitializer()));
             Window.SetStatusBarColor(Android.Graphics.Color.ParseColor(AppConstant.Background.ToHex()));
             
         }
@@ -36,6 +39,14 @@ namespace App.Droid
             Xamarin.Essentials.Platform.OnRequestPermissionsResult(requestCode, permissions, grantResults);
 
             base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
+        }
+
+        public class AndroidInitializer : IPlatformInitializer
+        {
+            public void RegisterTypes(IContainerRegistry containerRegistry)
+            {
+
+            }
         }
     }
 }

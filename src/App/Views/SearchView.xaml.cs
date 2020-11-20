@@ -10,14 +10,12 @@ using Xamarin.Forms.Xaml;
 namespace App.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class SearchView : ContentPage
+    public partial class SearchView : TabbedPage
     {
         public SearchView()
         {
            
             InitializeComponent();
-            BindingContext = new SearchPageViewModel();
-
            
         }
 

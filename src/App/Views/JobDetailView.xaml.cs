@@ -7,10 +7,9 @@ namespace App.Views
 {
     public partial class JobDetailView : ContentPage
     {
-        public JobDetailView(string link)
+        public JobDetailView()
         {
             InitializeComponent();
-            BindingContext = new JobDetailViewModel(link);
         }
     }
 }

@@ -5,6 +5,10 @@ using App.Views;
 using Flurl;
 using Flurl.Http;
 using Newtonsoft.Json;
+using Prism.Commands;
+using Prism.Mvvm;
+using Prism.Navigation;
+using PropertyChanged;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -18,55 +22,79 @@ using Xamarin.Forms;
 
 namespace App.ViewModels
 {
-    [QueryProperty("Parameters", "parameters")]
-    public class JobsListViewModel : INotifyPropertyChanged
+    [AddINotifyPropertyChangedInterface]
+    public class JobsListViewModel : IInitialize
     {
 
-
         public JobListModel JobsList { get; set; }
-        public string Keyword { get; set; }
+        public string Keyword { get;set; }
+
         public string IsRemote { get; set; }
-        public int Pagenumber;
+
+        public int Pagenumber { get; set; }
+
+        public bool _isBusy;
         public bool IsBusy { get; set; }
-        public Command CallDetailScreenCommand { get; set; }
-        public INavigation Navigation { get; set; }
+        public DelegateCommand<string> CallDetailScreenCommand { get; set; }
+        public INavigationService Navigation { get; set; }
         public ICommand LoadMore { get; set; }
-        public Command BackButton { get; set; }
+        public DelegateCommand BackButton { get; set; }
 
-
-        public string Parameters
+        
+        public JobsListViewModel(INavigationService navigationService)
         {
-            set
-            {
-                var vm = Task.Run(() => JsonConvert.DeserializeObject<ParametersSearch>(Uri.UnescapeDataString(value))).Result;
-                Keyword = vm.EntryKeyWord;
-                LoadMore = new Command(async () => {
-                   
-                    //UserDialogs.Instance.ShowLoading(title: "Loading");
-                    IsBusy = true;
-                    try
-                    {
+            Navigation = navigationService;
 
-                        Pagenumber++;
-                        await LoadSearchDataAsync(vm.EntryKeyWord, vm.IsRemote, Pagenumber);
-                    }
-                    catch (Exception ex)
-                    {
-                        Debug.WriteLine(ex.Message);
-                    }
-                    finally
-                    {
-                        
-                        //UserDialogs.Instance.HideLoading();
-                        IsBusy = false;
-                    }
-
-                });
-
-                LoadMore.Execute(null);
-            }
+            RegisterCommands();
 
         }
+
+        public void Initialize(INavigationParameters parameters)
+        {
+            if (parameters.ContainsKey("ListJobs"))
+            {
+                var ListJobs = parameters["ListJobs"] as ParametersSearch;
+                Keyword = ListJobs.EntryKeyWord;
+                IsRemote = ListJobs.IsRemote;
+                Pagenumber = 0;
+
+                LoadMore.Execute(null);
+
+            }
+
+
+        }
+
+        public void RegisterCommands() {
+
+            LoadMore = new DelegateCommand(async () => {
+
+                //UserDialogs.Instance.ShowLoading(title: "Loading");
+                IsBusy = true;
+                try
+                {
+
+                    Pagenumber++;
+                    await LoadSearchDataAsync(Keyword, IsRemote, Pagenumber);
+                }
+                catch (Exception ex)
+                {
+                    Debug.WriteLine(ex.Message);
+                }
+                finally
+                {
+
+                    //UserDialogs.Instance.HideLoading();
+                    IsBusy = false;
+                }
+
+            });
+
+            CallDetailScreenCommand = new DelegateCommand<string>(async (jobId) => await OpenDetailViewAsync(jobId));
+
+        }
+
+
         public async Task LoadSearchDataAsync(string enterkeyboard, string isRemote, int PageNumber)
         {
             var Cards = await AppConstant.ApiUrl
@@ -88,32 +116,32 @@ namespace App.ViewModels
             }
             else
             {
-
-                foreach (var NJobs in Cards.Jobs)
+                if (Cards.Jobs != null)
                 {
-                    JobsList.Jobs.Add(NJobs);
+                    foreach (var NJobs in Cards.Jobs)
+                    {
+                        JobsList.Jobs.Add(NJobs);
+                    }
+
+                    JobsList.Jobs = new ObservableCollection<Jobs>(JobsList.Jobs);
                 }
+
             }
 
+
         }
-        public JobsListViewModel(INavigation navshell)
+
+        public async Task OpenDetailViewAsync(string jobId)
         {
-            this.Navigation = navshell;
-            CallDetailScreenCommand = new Command<string>(async (string Link) => await OpenDetailViewAsync(Link));
-            BackButton = new Command(async () =>
-            {
+            var Params = new NavigationParameters
+                {
+                    { "JobId",  jobId}
+                };
 
-                await Navigation.PopAsync();
-
-            });
+            await Navigation.NavigateAsync("JobDetailView", Params);
         }
 
-        public async Task OpenDetailViewAsync(string link)
-        {
-            await Navigation.PushAsync(new JobDetailView(link));
-        }
-
-        public event PropertyChangedEventHandler PropertyChanged;
+        
 
     }
    

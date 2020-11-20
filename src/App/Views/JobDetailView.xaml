@@ -1,8 +1,27 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <ContentPage
     BackgroundColor="#F8F8F8"
-    xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="App.Views.JobDetailView"
-    xmlns:Local="clr-namespace:App.ViewModels">
+    xmlns="http://xamarin.com/schemas/2014/forms" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+    x:Class="App.Views.JobDetailView"
+    xmlns:prism="http://prismlibrary.com"
+    prism:ViewModelLocator.AutowireViewModel="True"
+    
+    >
+    <NavigationPage.TitleView>
+        <StackLayout Orientation="Horizontal" Margin="30,0,25,0">
+            <Label Text="DETAILS"
+                       FontSize="20"
+                       VerticalOptions="Center" HorizontalOptions="CenterAndExpand"
+                       Margin="0"
+                       TextColor="White"/>
+
+            <Label FontFamily="{StaticResource FontAwesomeSolid}" Text="&#xf004;"
+                       FontSize="35"  TextColor="{StaticResource ActiveColor}"
+                       HorizontalOptions="EndAndExpand" VerticalOptions="Center">
+            </Label>
+        </StackLayout>
+    </NavigationPage.TitleView>
 
     <ContentPage.Resources>
         <ResourceDictionary>
@@ -45,7 +64,7 @@
 
  <ScrollView>
     <StackLayout >
-       <StackLayout Orientation="Horizontal"
+       <!--<StackLayout Orientation="Horizontal"
                          Padding="15,12">
            <StackLayout.Margin>
                <OnPlatform
@@ -67,7 +86,7 @@
                        FontSize="35"  TextColor="{StaticResource ActiveColor}"
                        HorizontalOptions="EndAndExpand" VerticalOptions="Center">
                 </Label>
-     </StackLayout>
+     </StackLayout>-->
         <StackLayout Padding="20, 15" >
            <Label Text="{Binding JobsDetail.JobTitle}" FontSize="27"
                   FontAttributes="Bold"
@@ -83,7 +102,7 @@
                            TextColor="White" 
                            FontSize="12"/>
                 </Frame>
-                <Label Text="{Binding JobsDetail.CompanyName}" 
+                <Label Text="{Binding JobsDetail.Company.Name}" 
                     FontSize="16"
                     TextColor="Black"
                     FontAttributes="Bold"/>
