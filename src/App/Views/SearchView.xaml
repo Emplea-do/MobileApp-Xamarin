@@ -10,7 +10,7 @@
     Title="Search">
 
     <ContentPage.Content>
-     <Grid ColumnDefinitions="*,*" RowDefinitions="Auto,Auto,Auto,130,100,100">
+     <Grid ColumnDefinitions="*,*" RowDefinitions="Auto,Auto,Auto,150,100,100">
      <!--<Grid.RowDefinitions>
          <RowDefinition Height="Auto" /> 
          <RowDefinition Height="Auto" />
