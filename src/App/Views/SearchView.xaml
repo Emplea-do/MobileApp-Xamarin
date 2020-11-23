@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<TabbedPage
+<ContentPage
     x:Class="App.Views.SearchView"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
@@ -8,26 +8,9 @@
     xmlns:local="clr-namespace:App.Views"
     x:Name="Search"
     Title="Search">
-    <TabbedPage.Children>
-        <NavigationPage Title="Text1" IconImageSource="software.png">
-            <x:Arguments>
-        <local:ProfileView/>
-            </x:Arguments>
-        </NavigationPage>
-        <NavigationPage Title="Text2" IconImageSource="software.png">
-            <x:Arguments>
-                <local:JobsListView/>
-            </x:Arguments>
-        </NavigationPage>
-        <NavigationPage Title="Text3" IconImageSource="software.png">
-            <x:Arguments>
-                <local:SettingsView/>
-        </x:Arguments>
-        </NavigationPage>
 
-    </TabbedPage.Children>
-    <ContentPage>
-     <Grid ColumnDefinitions="*,*" RowDefinitions="Auto,Auto,Auto,100,100,100">
+    <ContentPage.Content>
+     <Grid ColumnDefinitions="*,*" RowDefinitions="Auto,Auto,Auto,150,100,100">
      <!--<Grid.RowDefinitions>
          <RowDefinition Height="Auto" /> 
          <RowDefinition Height="Auto" />
@@ -44,7 +27,7 @@
 
      
             <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" 
-                Margin="20,100,20,0"
+                Margin="20,70,20,0"
                 FontAttributes="Bold"
                 FontSize="Large"
                 Text="Hola, ¿Qué tipo de trabajo estamos buscando?"
@@ -61,39 +44,42 @@
             <Label Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2"
                 Margin="20,20,10,0"
                 FontAttributes="Bold"
-                FontSize="Default"
+                FontSize="Medium"
                 Text="Buscar por Categoría"
                 TextColor="{StaticResource TextLabelColor}" />
-            <CarouselView Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2"
-                Margin="20,0,20,0"
+            <CollectionView Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2"
+                Margin="20,0"
                 HorizontalOptions="Start"
                 HorizontalScrollBarVisibility="Never"
+                ItemsLayout="HorizontalList"
                 ItemsSource="{Binding JobCards}"
+                FlowDirection="LeftToRight"
                 >
-                <CarouselView.ItemTemplate>
+                <CollectionView.ItemTemplate>
                     <DataTemplate>
                         <StackLayout>
-                            <Frame HasShadow="False" HorizontalOptions="CenterAndExpand">
+                            <Frame HasShadow="False" HorizontalOptions="CenterAndExpand" Margin="3" CornerRadius="5">
                                 <Frame.GestureRecognizers>
                                        <TapGestureRecognizer Command="{Binding Source={x:Reference Name=Search}, Path=BindingContext.CategorySearch}" CommandParameter="{Binding NameCard}" NumberOfTapsRequired="1"/>
                                 </Frame.GestureRecognizers>
                                 <StackLayout>
                                     <Image Source="{Binding Image}" />
                                     <Label
-                                        FontSize="Micro"
+                                        FontSize="Body"
                                         HorizontalTextAlignment="Center"
-                                        Text="{Binding NameCard}" />
+                                        Text="{Binding NameCard}"
+                                        TextColor="#9EABBA"/>
                                 </StackLayout>
                             </Frame>
                         </StackLayout>
                     </DataTemplate>
-                </CarouselView.ItemTemplate>
-            </CarouselView>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
 
            
                 <Label Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2"
                     Margin="20,0,0,0"
-                    FontSize="Large"
+                    FontSize="18"
                     HorizontalOptions="StartAndExpand"
                     Text="Buscar solo empleos remotos"
                     TextColor="{StaticResource TextLabelColor}"
@@ -120,5 +106,5 @@
                 VerticalOptions="CenterAndExpand"
                 WidthRequest="400" />
        </Grid>
-    </ContentPage>
-</TabbedPage>
+    </ContentPage.Content>
+</ContentPage>
