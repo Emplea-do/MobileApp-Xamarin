@@ -24,7 +24,7 @@ namespace App.ViewModels
         private string enKeywords;
         private bool isRemote;
         public ICommand CategorySearch { get; set; }
-        public ICommand BtnSearch { get; }
+        public ICommand BtnSearch { get; set; }
 
         public INavigationService NavigationService { get; set; }
         public ObservableCollection<JobCards> JobCards { get; set; }
@@ -34,37 +34,32 @@ namespace App.ViewModels
             NavigationService = navigationService;
 
             JobCards = new ObservableCollection<JobCards>(new MockCardService().GetJobCards());
- 
-            BtnSearch = new DelegateCommand(async () =>
-            {
-                ParametersSearch parameters = new ParametersSearch
-                {
-                    EntryKeyWord = enKeywords.ToString(),
-                    //Category = ""
-                    IsRemote = isRemote.ToString()
-                    
-                };
-                
-                await NavigationService.NavigateAsync("JobsListView", new NavigationParameters { { "ListJobs", parameters } } );
-                //await Shell.Current.GoToAsync($"/listJobs?parameters={jason}");
-             });
 
-            CategorySearch = new DelegateCommand<string>(async (string NameCard) =>
-            {
-                ParametersSearch parameters = new ParametersSearch
-                {
-                    EntryKeyWord = NameCard,
-                    //Category = ""
-                    IsRemote = isRemote.ToString()
-
-                };
-
-                await NavigationService.NavigateAsync("JobsListView", new NavigationParameters { { "ListJobs", parameters } });
-
-            });
+            RegisterCommand();
         }
 
-        
+
+        public void RegisterCommand() {
+
+            BtnSearch = new DelegateCommand(async () => await NavigateToJobList(enKeywords.ToString()));
+            CategorySearch = new DelegateCommand<string>(async (searchParameter) => await NavigateToJobList(searchParameter));
+
+        }
+
+
+        public async Task NavigateToJobList(string searchParameters = "") {
+
+            ParametersSearch parameters = new ParametersSearch
+            {
+                EntryKeyWord = searchParameters.Replace(System.Environment.NewLine, " "),
+                IsRemote = isRemote.ToString()
+
+            };
+
+            await NavigationService.NavigateAsync("JobsListView", new NavigationParameters { { "ListJobs", parameters } });
+
+        }
+
 
         public bool IsVisible
         {
