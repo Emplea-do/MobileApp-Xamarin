@@ -10,81 +10,96 @@
     Title="Search">
 
     <ContentPage.Content>
-     <Grid ColumnDefinitions="*,*" RowDefinitions="Auto,Auto,Auto,150,100,100">
-     <!--<Grid.RowDefinitions>
-         <RowDefinition Height="Auto" /> 
-         <RowDefinition Height="Auto" />
-         <RowDefinition Height="Auto" />
-         <RowDefinition Height="100" /> 
-         <RowDefinition Height="100" />
-         <RowDefinition Height="100" />
-     </Grid.RowDefinitions>
+        <ScrollView>
+            <Grid ColumnDefinitions="*,*" RowDefinitions="Auto,Auto,Auto,150,50,60">
 
-     <Grid.ColumnDefinitions>
-         <ColumnDefinition Width="*" />
-         <ColumnDefinition  Width="*" />
-     </Grid.ColumnDefinitions>-->
+                <Label
+                    Grid.Row="0"
+                    Grid.Column="0"
+                    Grid.ColumnSpan="2"
+                    Margin="20,70,20,0"
+                    FontAttributes="Bold"
+                    FontSize="Medium"
+                    Text="Hola, ¿Qué tipo de trabajo estamos buscando?"
+                    TextColor="{StaticResource TextLabelColor}" />
 
-     
-            <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" 
-                Margin="20,70,20,0"
-                FontAttributes="Bold"
-                FontSize="Large"
-                Text="Hola, ¿Qué tipo de trabajo estamos buscando?"
-                TextColor="{StaticResource TextLabelColor}" />
+                <Entry
+                    Grid.Row="1"
+                    Grid.Column="0"
+                    Grid.ColumnSpan="2"
+                    Margin="20,10,20,0"
+                    Placeholder=" Keywords"
+                    Text="{Binding EnKeywords}" />
+                <Label
+                    Grid.Row="1"
+                    Grid.Column="0"
+                    Grid.ColumnSpan="2"
+                    Margin="20,0,20,0"
+                    IsVisible="{Binding IsVisible}"
+                    Text="{Binding Message}" />
 
-            <Entry Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2"
-                Margin="20,20,20,0"
-                Placeholder=" Keywords"
-                Text="{Binding EnKeywords}" />
-            <Label Grid.Row="1"  Grid.Column="0" Grid.ColumnSpan="2"
-                   Margin="20,0,20,0"
-                   IsVisible="{Binding IsVisible}" Text="{Binding Message}" />
+                <Label
+                    Grid.Row="2"
+                    Grid.Column="0"
+                    Grid.ColumnSpan="2"
+                    Margin="20,10,10,0"
+                    FontAttributes="Bold"
+                    FontSize="Medium"
+                    Text="Buscar por Categoría"
+                    TextColor="{StaticResource TextLabelColor}" />
+                <CollectionView
+                    Grid.Row="3"
+                    Grid.Column="0"
+                    Grid.ColumnSpan="2"
+                    Margin="20,0"
+                    FlowDirection="LeftToRight"
+                    HorizontalOptions="Start"
+                    HorizontalScrollBarVisibility="Never"
+                    ItemsLayout="HorizontalList"
+                    ItemsSource="{Binding JobCards}">
 
-            <Label Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2"
-                Margin="20,20,10,0"
-                FontAttributes="Bold"
-                FontSize="Medium"
-                Text="Buscar por Categoría"
-                TextColor="{StaticResource TextLabelColor}" />
-            <CollectionView Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2"
-                Margin="20,0"
-                HorizontalOptions="Start"
-                HorizontalScrollBarVisibility="Never"
-                ItemsLayout="HorizontalList"
-                ItemsSource="{Binding JobCards}"
-                FlowDirection="LeftToRight"
-                >
-                <CollectionView.ItemTemplate>
-                    <DataTemplate>
-                        <StackLayout>
-                            <Frame HasShadow="False" HorizontalOptions="CenterAndExpand" Margin="3" CornerRadius="5">
-                                <Frame.GestureRecognizers>
-                                       <TapGestureRecognizer Command="{Binding Source={x:Reference Name=Search}, Path=BindingContext.CategorySearch}" CommandParameter="{Binding NameCard}" NumberOfTapsRequired="1"/>
-                                </Frame.GestureRecognizers>
-                                <StackLayout>
-                                    <Image Source="{Binding Image}" />
-                                    <Label
-                                        FontSize="Body"
-                                        HorizontalTextAlignment="Center"
-                                        Text="{Binding NameCard}"
-                                        TextColor="#9EABBA"/>
-                                </StackLayout>
-                            </Frame>
-                        </StackLayout>
-                    </DataTemplate>
-                </CollectionView.ItemTemplate>
-            </CollectionView>
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <StackLayout>
+                                <Frame
+                                    Margin="3"
+                                    CornerRadius="5"
+                                    HasShadow="False"
+                                    HorizontalOptions="CenterAndExpand">
+                                    <Frame.GestureRecognizers>
+                                        <TapGestureRecognizer
+                                            Command="{Binding Source={x:Reference Name=Search}, Path=BindingContext.CategorySearch}"
+                                            CommandParameter="{Binding NameCard}"
+                                            NumberOfTapsRequired="1" />
+                                    </Frame.GestureRecognizers>
+                                    <StackLayout>
+                                        <Image Source="{Binding Image}" />
+                                        <Label
+                                            FontSize="Body"
+                                            HorizontalTextAlignment="Center"
+                                            Text="{Binding NameCard}"
+                                            TextColor="#9EABBA" />
+                                    </StackLayout>
+                                </Frame>
+                            </StackLayout>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
 
-           
-                <Label Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2"
+
+                <Label
+                    Grid.Row="4"
+                    Grid.Column="0"
+                    Grid.ColumnSpan="2"
                     Margin="20,0,0,0"
-                    FontSize="18"
+                    FontSize="16"
                     HorizontalOptions="StartAndExpand"
                     Text="Buscar solo empleos remotos"
                     TextColor="{StaticResource TextLabelColor}"
                     VerticalOptions="Center" />
-                <Switch Grid.Row="4" Grid.Column="1"
+                <Switch
+                    Grid.Row="4"
+                    Grid.Column="1"
                     Margin="0,0,20,0"
                     HorizontalOptions="End"
                     IsToggled="{Binding IsRemote}"
@@ -92,19 +107,23 @@
                     ThumbColor="{StaticResource ThumbColor}"
                     VerticalOptions="Center" />
 
-            <Button Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2"
-                Margin="20,0,20,0"
-                BackgroundColor="{StaticResource BackgroundColorButtonSearch}"
-                Command="{Binding BtnSearch}"
-                FontAttributes="Bold"
-                FontSize="Large"
-                HeightRequest="60"
-                HorizontalOptions="CenterAndExpand"
-                IsEnabled="{Binding IsEnable}"
-                Text="Buscar"
-                TextColor="{StaticResource TextColoButtonSearch}"
-                VerticalOptions="CenterAndExpand"
-                WidthRequest="400" />
-       </Grid>
+                <Button
+                    Grid.Row="5"
+                    Grid.Column="0"
+                    Grid.ColumnSpan="2"
+                    Margin="20,0,20,0"
+                    BackgroundColor="{StaticResource BackgroundColorButtonSearch}"
+                    Command="{Binding BtnSearch}"
+                    FontAttributes="Bold"
+                    FontSize="Large"
+                    HeightRequest="60"
+                    HorizontalOptions="CenterAndExpand"
+                    IsEnabled="{Binding IsEnable}"
+                    Text="Buscar"
+                    TextColor="{StaticResource TextColoButtonSearch}"
+                    VerticalOptions="CenterAndExpand"
+                    WidthRequest="400" />
+            </Grid>
+        </ScrollView>
     </ContentPage.Content>
 </ContentPage>

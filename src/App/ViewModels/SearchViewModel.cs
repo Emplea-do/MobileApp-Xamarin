@@ -16,7 +16,7 @@ using PropertyChanged;
 namespace App.ViewModels
 {
     [AddINotifyPropertyChangedInterface]
-    public class SearchPageViewModel
+    public class SearchViewModel
     {
         private string message = "No se permiten caracteres especiales";
         private bool isEnable;
@@ -29,7 +29,7 @@ namespace App.ViewModels
         public INavigationService NavigationService { get; set; }
         public ObservableCollection<JobCards> JobCards { get; set; }
 
-        public SearchPageViewModel(INavigationService navigationService)
+        public SearchViewModel(INavigationService navigationService)
         {
             NavigationService = navigationService;
 
