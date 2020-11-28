@@ -6,7 +6,7 @@
     xmlns:Local="clr-namespace:App.ViewModels">
     <ContentPage.Content>
         <StackLayout Margin="20,60,20,0">
-            <Label Text="Settings View" />
+            <Label Text="Profile View" />
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

@@ -11,15 +11,17 @@
 
     <ContentPage.Content>
         <ScrollView>
-            <Grid ColumnDefinitions="*,*" RowDefinitions="Auto,Auto,Auto,150,50,60">
+            <Grid ColumnDefinitions="*,*" RowDefinitions="Auto,Auto,Auto,150,Auto,Auto">
 
                 <Label
                     Grid.Row="0"
                     Grid.Column="0"
                     Grid.ColumnSpan="2"
-                    Margin="20,70,20,0"
+                    Margin="{OnPlatform Android='20,50,20,0',
+                                        iOS='20,150,40,10'}"
                     FontAttributes="Bold"
-                    FontSize="Medium"
+                    FontSize="{OnPlatform Android='Medium',
+                                          iOS='Large'}"
                     Text="Hola, ¿Qué tipo de trabajo estamos buscando?"
                     TextColor="{StaticResource TextLabelColor}" />
 
@@ -27,26 +29,22 @@
                     Grid.Row="1"
                     Grid.Column="0"
                     Grid.ColumnSpan="2"
-                    Margin="20,10,20,0"
+                    Margin="{OnPlatform Android='20,10,20,0',
+                                        iOS='20,30,20,0'}"
                     Placeholder=" Keywords"
                     Text="{Binding EnKeywords}" />
-                <Label
-                    Grid.Row="1"
-                    Grid.Column="0"
-                    Grid.ColumnSpan="2"
-                    Margin="20,0,20,0"
-                    IsVisible="{Binding IsVisible}"
-                    Text="{Binding Message}" />
 
                 <Label
                     Grid.Row="2"
                     Grid.Column="0"
                     Grid.ColumnSpan="2"
-                    Margin="20,10,10,0"
+                    Margin="{OnPlatform Android='20,10,10,0',
+                                        iOS='20,20,10,0'}"
                     FontAttributes="Bold"
                     FontSize="Medium"
                     Text="Buscar por Categoría"
                     TextColor="{StaticResource TextLabelColor}" />
+
                 <CollectionView
                     Grid.Row="3"
                     Grid.Column="0"
@@ -91,7 +89,8 @@
                     Grid.Row="4"
                     Grid.Column="0"
                     Grid.ColumnSpan="2"
-                    Margin="20,0,0,0"
+                    Margin="{OnPlatform Android='20,10,0,0',
+                                        iOS='20,30,0,0'}"
                     FontSize="16"
                     HorizontalOptions="StartAndExpand"
                     Text="Buscar solo empleos remotos"
@@ -100,7 +99,8 @@
                 <Switch
                     Grid.Row="4"
                     Grid.Column="1"
-                    Margin="0,0,20,0"
+                    Margin="{OnPlatform Android='0,10,20,0',
+                                        iOS='0,30,20,0'}"
                     HorizontalOptions="End"
                     IsToggled="{Binding IsRemote}"
                     OnColor="#13bac3"
@@ -111,12 +111,14 @@
                     Grid.Row="5"
                     Grid.Column="0"
                     Grid.ColumnSpan="2"
-                    Margin="20,0,20,0"
+                    Margin="{OnPlatform Android='20,10,20,0',
+                                        iOS='20,30,20,0'}"
                     BackgroundColor="{StaticResource BackgroundColorButtonSearch}"
                     Command="{Binding BtnSearch}"
                     FontAttributes="Bold"
                     FontSize="Large"
-                    HeightRequest="60"
+                    HeightRequest="{OnPlatform Android='50',
+                                               iOS='70'}"
                     HorizontalOptions="CenterAndExpand"
                     IsEnabled="{Binding IsEnable}"
                     Text="Buscar"
