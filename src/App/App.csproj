@@ -26,18 +26,6 @@
     <Folder Include="ViewModels\" />
   </ItemGroup>
  
-   <ItemGroup>
-    <AndroidResource Include="Resources\drawable\disenoGrafico.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\movil.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\software.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\web.png" />
-  </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Update="Views\JobsListView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>

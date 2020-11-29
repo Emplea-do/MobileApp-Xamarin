@@ -28,7 +28,7 @@ namespace App
             else {
                 InitializeComponent();
 
-                await NavigationService.NavigateAsync("NavigationPage/SearchView");
+                await NavigationService.NavigateAsync("NavigationPage/MainTabbedPage");
             }
             
         }
@@ -36,7 +36,8 @@ namespace App
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {
             containerRegistry.RegisterForNavigation<NavigationPage>();
-            containerRegistry.RegisterForNavigation<SearchView, SearchPageViewModel>();
+            containerRegistry.RegisterForNavigation<MainTabbedPage>();
+            containerRegistry.RegisterForNavigation<SearchView, SearchViewModel>();
             containerRegistry.RegisterForNavigation<JobDetailView, JobDetailViewModel>();
             containerRegistry.RegisterForNavigation<JobsListView, JobsListViewModel>();
         }

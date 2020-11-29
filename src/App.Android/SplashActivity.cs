@@ -14,7 +14,7 @@ using Android.Widget;
 
 namespace App.Droid
 {
-    [Activity(Label = "Splash", Icon = "@mipmap/Icon", Theme = "@style/MyTheme.Splash", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
+    [Activity(Label = "Emplea.do", Icon = "@mipmap/Icon", Theme = "@style/MyTheme.Splash", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
 
     public class SplashActivity : Activity
     {
