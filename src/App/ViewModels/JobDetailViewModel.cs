@@ -10,19 +10,50 @@ using Xamarin.Forms;
 using Prism.Commands;
 using Prism.Navigation;
 using PropertyChanged;
+using Xamarin.Essentials;
+using System.Windows.Input;
 
 namespace App.ViewModels
 {
     [AddINotifyPropertyChangedInterface]
-    public class JobDetailViewModel : IInitialize, INavigationAware
+    public class JobDetailViewModel : IInitialize
     {
+        private string uri;
+
         public JobDetailModel JobsDetail { get; set; }
-        public DelegateCommand OpenJobWebURLCommand { get; set; }
+
+        public DelegateCommand NavigateToURLCommand { get; set; }
 
         public JobDetailViewModel()
         {
 
+            NavigateToURLCommand = new DelegateCommand(async () => await NavigateToURL());
+
         }
+
+        private async Task NavigateToURL()
+        {
+            var url = JobsDetail.Company.Url.ToString();
+            try
+            {
+
+                await Browser.OpenAsync(url, new BrowserLaunchOptions
+                {
+                    LaunchMode = BrowserLaunchMode.SystemPreferred,
+                    TitleMode = BrowserTitleMode.Show,
+                    PreferredToolbarColor = Color.AliceBlue,
+                    PreferredControlColor = Color.Violet
+                });
+
+            }
+            catch (Exception ex)
+            {
+                //No Browser Application available to open
+            }
+        }
+
+
+
         public async Task LoadDataAsync(string jobId)
         {
 
@@ -34,15 +65,9 @@ namespace App.ViewModels
             JobsDetail = Data;
         }
 
-        
-        public async void OpenJobWebURL(string uri) {
+      
 
-            if (await Xamarin.Essentials.Launcher.CanOpenAsync(uri))
-                await Xamarin.Essentials.Launcher.OpenAsync(uri);
-           // Device.OpenUri(new Uri(Url));
-
-        }
-
+      
         public void Initialize(INavigationParameters parameters)
         {
             if (parameters.ContainsKey("JobId"))
@@ -53,16 +78,6 @@ namespace App.ViewModels
 
         }
 
-        public void OnNavigatedFrom(INavigationParameters parameters)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void OnNavigatedTo(INavigationParameters parameters)
-        {
-            throw new NotImplementedException();
-        }
-
-        //public event PropertyChangedEventHandler PropertyChanged;
+      
     }
 }

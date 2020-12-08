@@ -28,9 +28,7 @@ namespace App.ViewModels
 
         public JobListModel JobsList { get; set; }
         public string Keyword { get;set; }
-
         public string IsRemote { get; set; }
-
         public int Pagenumber { get; set; }
 
         public bool _isBusy;
