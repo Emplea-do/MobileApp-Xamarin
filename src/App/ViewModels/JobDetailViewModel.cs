@@ -12,6 +12,7 @@ using Prism.Navigation;
 using PropertyChanged;
 using Xamarin.Essentials;
 using System.Windows.Input;
+using Prism.Services;
 
 namespace App.ViewModels
 {
@@ -20,13 +21,21 @@ namespace App.ViewModels
     {
         private string uri;
 
+        private IPageDialogService _dialogService;
+
         public JobDetailModel JobsDetail { get; set; }
 
         public DelegateCommand NavigateToURLCommand { get; set; }
 
-        public JobDetailViewModel()
+        public JobDetailViewModel( IPageDialogService dialogService)
         {
+            RegisterCommands();
 
+            _dialogService = dialogService;
+        }
+
+        private void RegisterCommands()
+        {
             NavigateToURLCommand = new DelegateCommand(async () => await NavigateToURL());
 
         }
@@ -48,7 +57,7 @@ namespace App.ViewModels
             }
             catch (Exception ex)
             {
-                //No Browser Application available to open
+                await _dialogService.DisplayAlertAsync("Alert", "No hay un navegador disponible para abrir", "OK");
             }
         }
 
