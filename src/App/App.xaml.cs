@@ -38,9 +38,9 @@ namespace App
         }
         protected override void OnStart()
         {
-            AppCenter.Start($"ios={AppConstant.AppCenterKeyiOS};" +
+            AppCenter.Start($"ios={AppConstant.AppCenteriOS};" +
                             "uwp={Your UWP App secret here};" +
-                            $"android={AppConstant.AppCenterKeyAndroid}",
+                            $"android={AppConstant.AppCenterAndroid}",
                 typeof(Analytics), typeof(Crashes));
         }
 

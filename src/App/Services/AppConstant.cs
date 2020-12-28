@@ -17,8 +17,8 @@ namespace App.Services
         public const string ApiEndPointSearch = "jobs/search";
         public const string ApiEndPointDetail = "jobs/detail/";
 
-        public const string AppCenterKeyiOS = "";
-        public const string AppCenterKeyAndroid = "";
+        public const string AppCenteriOS = "";
+        public const string AppCenterAndroid = "";
 
 
 
