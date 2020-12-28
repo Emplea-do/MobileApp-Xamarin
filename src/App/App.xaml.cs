@@ -6,6 +6,10 @@ using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using Prism;
 using Prism.Ioc;
+using App.Services;
+using Microsoft.AppCenter;
+using Microsoft.AppCenter.Analytics;
+using Microsoft.AppCenter.Crashes;
 
 [assembly: XamlCompilation(XamlCompilationOptions.Compile)]
 namespace App
@@ -31,6 +35,13 @@ namespace App
                 await NavigationService.NavigateAsync("NavigationPage/MainTabbedPage");
             }
             
+        }
+        protected override void OnStart()
+        {
+            AppCenter.Start($"ios={AppConstant.AppCenterKeyiOS};" +
+                            "uwp={Your UWP App secret here};" +
+                            $"android={AppConstant.AppCenterKeyAndroid}",
+                typeof(Analytics), typeof(Crashes));
         }
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
